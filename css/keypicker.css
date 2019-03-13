@@ -1,0 +1,120 @@
+.keypicker {
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 5px;
+    margin-top: 8px;
+    width: 200px;
+    color: #555;
+    display: none;
+    position: absolute;
+    z-index: 1120;
+}
+
+.keypicker table {
+    width: 100%;
+}
+
+.keypicker td,
+.keypicker th {
+    text-align: center;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.keypicker td {
+    font-size: 1.4rem;
+}
+
+.keypicker td.keypicker-key {
+    height: 34px;
+    width: 34px;
+}
+
+.keypicker td.keypicker-key:hover {
+    height: 34px;
+    width: 34px;
+    color: #fff;
+    background: #3bb4f2 none repeat scroll 0 0;
+    transition: background-color 0.2s ease 0s;
+}
+
+.keypicker td.dot,
+.keypicker td.delete {
+    background: #f2f2f2;
+}
+
+.keypicker td.border-top {
+    border-top: 1px solid #f2f2f2;
+}
+
+.keypicker td.border-bottom {
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.keypicker td.border-left {
+    border-left: 1px solid #f2f2f2;
+}
+
+.keypicker td.border-right {
+    border-right: 1px solid #f2f2f2;
+}
+
+.keypicker:before,
+.keypicker:after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    border: 8px dashed transparent;
+    z-index: 1;
+}
+
+.keypicker:before,
+.keypicker:after {
+    border-bottom-style: solid;
+    border-width: 0 8px 8px;
+}
+
+.keypicker:before {
+    border-bottom-color: #ddd;
+    bottom: 0;
+}
+
+.keypicker:after {
+    border-bottom-color: #fff;
+    bottom: -1px;
+}
+
+.keypicker:before,
+.keypicker:after {
+    left: 10px;
+    top: -8px;
+    pointer-events: none;
+}
+
+.keypicker:after {
+    top: -7px;
+}
+
+.keypicker-right:before,
+.keypicker-right:after {
+    left: auto;
+    right: 7px;
+}
+
+.keypicker-up:before,
+.keypicker-up:after {
+    border-bottom: none;
+    border-top: 8px solid #ddd;
+    top: auto;
+    bottom: -8px;
+}
+
+.keypicker-up:after {
+    bottom: -7px;
+    border-top-color: #fff;
+}

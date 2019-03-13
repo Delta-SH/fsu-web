@@ -1,0 +1,622 @@
+body {
+    font-size: 12px;
+}
+
+.py-topbar {
+    background: #282d2f;
+    border: none;
+    border-bottom: 1px solid #43454a;
+}
+
+.py-topbar-brand {
+    line-height: 45px;
+}
+
+.py-bottombar {
+    min-height: auto;
+    background: #282d2f;
+    border: none;
+    border-top: 1px solid #43454a;
+}
+
+.py-bottombar-nav>li>a {
+    color: #b3b3b3;
+    padding: 0 12px;
+    line-height: 40px;
+}
+
+.py-bottombar-nav>li>a:focus,
+.py-bottombar-nav>li>a:hover {
+    color: #fff;
+    background-color: #43454a;
+    text-decoration: none;
+}
+
+.py-bottombar-nav>li>a:after {
+    border-bottom: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-top: 0 dotted;
+}
+
+.py-bottombar-nav>li>a:hover:after {
+    opacity: 1;
+    border-bottom-color: #fff;
+}
+
+.py-bottombar-nav>li.am-active>a,
+.py-bottombar-nav>li.am-active>a:focus,
+.py-bottombar-nav>li.am-active>a:hover {
+    color: #fff;
+    background: #43454a;
+    border-radius: 0;
+}
+
+.py-topbar-badge {
+    padding: 3px 5px;
+    margin-top: 16px;
+}
+
+.py-topbar-right {
+    float: right;
+    margin-right: 8px;
+}
+
+.py-icon-13:before {
+    font-size: 13px;
+}
+
+.py-icon-18:before {
+    font-size: 18px;
+}
+
+.py-icon-20:before {
+    font-size: 20px;
+}
+
+.py-icon-22:before {
+    font-size: 22px;
+}
+
+.py-icon-bottom:before {
+    vertical-align: -10%;
+}
+
+.py-badge-yellow {
+    background-color: #ffd700;
+}
+
+.py-bottombar-right {
+    margin-right: 0;
+}
+
+ul.py-dropdown-content>li>a {
+    padding: 3px 15px;
+    font-size: 12px;
+}
+
+.py-dropdown-header {
+    color: #999;
+    padding: 3px 5px;
+}
+
+.center {
+    text-align: center;
+}
+
+[class*=am-u-] {
+    padding: 0;
+}
+
+.am-with-topbar-fixed-bottom {
+    padding-bottom: 41px;
+}
+
+.am-datatable-center {
+    margin-bottom: 5px;
+}
+
+.am-datatable-footer {}
+
+table.am-table {
+    font-size: 12px;
+}
+
+table.am-table th,
+td {
+    white-space: nowrap;
+}
+
+table.am-table tr>td:first-child,
+table.am-table tr>th:first-child {
+    border-left: 0;
+}
+
+table.am-table tr>td:last-child,
+table.am-table tr>th:last-child {
+    border-right: 0;
+}
+
+table.am-table tbody>tr>td {
+    padding: 2px 5px;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+table.am-table tbody>tr>td>button {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 2px 5px;
+    margin-right: 3px;
+    margin-bottom: 1px;
+}
+
+table.am-table tbody>tr>td>button:last-child {
+    margin-right: 0;
+}
+
+table.am-table tbody>tr:hover {
+    background-color: #f6f6f6;
+}
+
+table.am-table tbody>tr.selected>td {
+    background-color: #aab7d1;
+}
+
+.dataTables_scroll {
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+.dataTables_scrollHead table {
+    border-bottom: none;
+}
+
+.am-datatable-info {
+    padding-top: 0;
+    font-size: 12px;
+}
+
+.am-table-bordered {
+    border-left: none;
+    border-right: none;
+}
+
+.am-pagination>li>a {
+    padding: .3em .6em;
+    line-height: 1;
+}
+
+.py-bar {
+    position: fixed;
+    top: 51px;
+    bottom: 41px;
+    left: 0;
+    width: 240px;
+    border-right: 1px solid #dfdfdf;
+    background: #f5f5f5;
+    overflow: auto;
+}
+
+.py-rightbar {
+    left: auto;
+    right: 0;
+    border-right: none;
+    border-left: 1px solid #dfdfdf;
+}
+
+.py-bar .am-selected {
+    width: 100%;
+}
+
+.py-bar .am-selected-content {
+    padding: 5px 0;
+}
+
+.py-bar .am-selected-list {
+    font-size: 12px;
+}
+
+.py-form {
+    padding: 5px;
+}
+
+.py-form-group {
+    margin-bottom: 5px;
+}
+
+.py-content {
+    width: 100%;
+    height: auto;
+    padding-left: 240px;
+}
+
+.py-rightcontent {
+    padding-left: auto;
+    padding-right: 240px;
+}
+
+.py-grid {
+    margin: 5px;
+}
+
+.py-grid-toolbar {
+    margin-bottom: 5px;
+}
+
+.py-fixedtree {
+    min-height: 200px;
+    padding: 3px 0;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+
+.py-filledtree {
+    padding: 3px 0;
+    overflow: auto;
+    border: 1px solid #ccc;
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    top: 40px;
+}
+
+.py-form input[type=text],
+.py-form input[type=password],
+.py-form select,
+.py-form textarea,
+.py-form-field {
+    font-size: 12px;
+}
+
+.am-btn {
+    font-size: 12px;
+}
+
+.am-input-group .am-form-field,
+.am-input-group-btn>.am-btn {
+    height: 30px;
+}
+
+.am-datepicker tr.am-datepicker-header {
+    font-size: 12px;
+}
+
+.am-datepicker td {
+    font-size: 12px;
+}
+
+.am-datepicker .am-datepicker-dow {
+    font-size: 12px;
+    height: 30px;
+}
+
+.am-datepicker th {
+    height: 30px;
+}
+
+.am-datepicker td.am-datepicker-day {
+    height: 28px;
+    width: 28px;
+}
+
+.am-datepicker td.am-datepicker-day:hover {
+    height: 28px;
+    width: 28px;
+}
+
+.py-tabs {
+    padding: 5px;
+}
+
+.py-nav-tabs>li>a {
+    margin-right: 5px;
+    line-height: 1.6;
+    border: 1px solid #c5c5c5;
+    background: #f6f6f6;
+    font-size: 12px;
+    font-weight: normal;
+    color: #454545;
+    border-bottom-width: 0;
+    white-space: nowrap;
+}
+
+.py-nav-tabs>li>a:hover {
+    border: 1px solid #c5c5c5;
+    border-bottom-width: 0;
+    background: #ededed;
+}
+
+.py-fixed-tabs-bd {
+    height: 400px;
+}
+
+.py-tabs-bd .py-tab-panel {
+    padding: 5px;
+}
+
+.py-modal-dialog {
+    width: 270px;
+    background: #f8f8f8;
+}
+
+.py-modal-hd {
+    padding: 7px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+    color: #444;
+    background-color: #e6e6e6;
+}
+
+.am-modal-hd .am-close {
+    top: 2px;
+}
+
+.am-modal-hd .title {
+    top: 2px;
+}
+
+.py-modal-danger .py-modal-hd {
+    color: #fff;
+    background-color: #be2924;
+}
+
+.py-modal-warning .py-modal-hd {
+    color: #fff;
+    background-color: #c85e0b;
+}
+
+.py-modal-primary .py-modal-hd {
+    color: #fff;
+    background-color: #0a6999;
+}
+
+.py-modal-success .py-modal-hd {
+    color: #fff;
+    background-color: #5eb95e;
+}
+
+.py-modal-bd {
+    padding: 3px 5px !important;
+    min-height: 50px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.py-modal-footer {
+    height: 35px;
+    line-height: 35px;
+}
+
+.py-modal-btn {
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    color: #444;
+}
+
+.py-level-0 {
+    color: #fff;
+    background-color: #5eb95e !important;
+}
+
+.py-level-1 {
+    color: #fff;
+    background-color: #dd514c !important;
+}
+
+.py-level-2 {
+    color: #fff;
+    background-color: #f37b1d !important;
+}
+
+.py-level-3 {
+    color: #fff;
+    background-color: #ffd700 !important;
+}
+
+.py-level-4 {
+    color: #fff;
+    background-color: #3bb4f2 !important;
+}
+
+.py-state-0 {
+    color: #fff;
+    background-color: #5eb95e !important;
+}
+
+.py-state-1 {
+    color: #fff;
+    background-color: #dd514c !important;
+}
+
+.py-state-2 {
+    color: #fff;
+    background-color: #f37b1d !important;
+}
+
+.py-state-3 {
+    color: #fff;
+    background-color: #ffd700 !important;
+}
+
+.py-state-4 {
+    color: #fff;
+    background-color: #3bb4f2 !important;
+}
+
+.py-state-5 {
+    color: #fff;
+    background-color: #4169e1 !important;
+}
+
+.py-state-6 {
+    color: #fff;
+    background-color: #d3d3d3 !important;
+}
+
+.py-state-7 {
+    color: #fff;
+    background-color: #0000ff !important;
+}
+
+.py-dialog-content {
+    padding: 5px;
+}
+
+.py-form-group {
+    margin-bottom: 3px;
+}
+
+.am-form input[type=text],
+.am-form input[type=password],
+.am-form select,
+.am-form-field {
+    padding: 5px;
+    font-size: 12px;
+}
+
+label {
+    margin-bottom: 3px;
+    font-weight: normal;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+.py-form-footer {
+    margin: 30px 10px 5px 10px;
+    height: 30px;
+}
+
+.py-form-button {
+    position: relative;
+    float: right;
+    width: 100px;
+    margin-left: -100px;
+    text-align: right;
+}
+
+.py-form-button button {
+    font-size: 12px;
+    padding: 3px 10px;
+}
+
+.py-form-info {
+    float: left;
+    width: 100%;
+    text-align: left;
+}
+
+.py-form-info>.py-form-msg {
+    font-size: 12px;
+    padding: 6px 0;
+    margin-right: 100px;
+}
+
+.py-info-danger {
+    color: #be2924;
+}
+
+.py-info-warning {
+    color: #c85e0b;
+}
+
+.py-info-primary {
+    color: #0a6999;
+}
+
+.py-info-success {
+    color: #5eb95e;
+}
+
+.py-setting {
+    width: 300px;
+}
+
+.py-setting label {
+    margin-bottom: 3px;
+    margin-top: 3px;
+    font-size: 12px;
+}
+
+.py-setting .am-selected {
+    width: 300px;
+    display: block;
+}
+
+.py-setting-toolbar {
+    margin-top: 5px;
+}
+
+.py-setting-toolbar button {
+    min-width: 80px;
+}
+
+.py-setting-toolbar .py-setting-msg {
+    margin-top: 5px;
+}
+
+.datetimepicker-dropdown-top-right:before {
+    left: 10px;
+}
+
+.datetimepicker table th {
+    width: 30px;
+    height: 30px;
+}
+
+.datetimepicker table td {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+}
+
+.datetimepicker-hours span.hour,
+.datetimepicker-hours span.minute,
+.datetimepicker-hours span.month,
+.datetimepicker-hours span.year,
+.datetimepicker-minutes span.hour,
+.datetimepicker-minutes span.minute,
+.datetimepicker-minutes span.month,
+.datetimepicker-minutes span.year,
+.datetimepicker-months span.hour,
+.datetimepicker-months span.minute,
+.datetimepicker-months span.month,
+.datetimepicker-months span.year,
+.datetimepicker-years span.hour,
+.datetimepicker-years span.minute,
+.datetimepicker-years span.month,
+.datetimepicker-years span.year {
+    height: 34px;
+    line-height: 34px;
+}
+
+.datetimepicker table th.next i,
+.datetimepicker table th.prev i {
+    width: 34px;
+    height: 34px;
+    line-height: 2;
+}
+
+.py-masking {
+    display: block;
+    background: #282d2f;
+}
+
+.py-masking-info {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    border-radius: 0;
+    color: #fff;
+    background: #282d2f;
+}

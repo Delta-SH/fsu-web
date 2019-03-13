@@ -1,0 +1,28 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 12px;
+    background-color: #282d2f;
+}
+
+.py-loading {
+    height: 50px;
+    width: 80%;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+
+.am-progress {
+    margin-bottom: 0;
+}
+
+.py-loading-info {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 5px;
+}
