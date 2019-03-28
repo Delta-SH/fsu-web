@@ -2,7 +2,7 @@ var $systemAuth = null;
 var $screenTime = 300000;
 var $screenTimeId = null;
 var $alarmInterval = 10000;
-$().ready(function() {
+$().ready(function () {
     $systemAuth = getSystemAuth();
     if (isNull($systemAuth) === true) {
         logout();
@@ -11,51 +11,50 @@ $().ready(function() {
 
     setScreen();
     setAlarm();
-    setTime();
 });
 
-var header = function() {
+var header = function () {
     $.ajax({
         type: "get",
         url: 'header.html',
         dataType: "html",
         async: false,
-        success: function(data) {
+        success: function (data) {
             $('#py-header').html(data);
         },
-        error: function(err) {
+        error: function (err) {
             $('#py-header').html(err.responseText || "模板加载失败");
         }
     });
 };
 
-var footer = function() {
+var footer = function () {
     $.ajax({
         type: "get",
         url: 'footer.html',
         dataType: "html",
         async: false,
-        success: function(data) {
+        success: function (data) {
             $('#py-footer').html(data);
         },
-        error: function(err) {
+        error: function (err) {
             $('#py-footer').html(err.responseText || "模板加载失败");
         }
     });
 };
 
-var done = function() {
+var done = function () {
     $('#py-masking').hide();
 };
 
-var createGrid = function(element, options) {
+var createGrid = function (element, options) {
     var _grid = null;
     var _defaults = {
         searching: false,
         scrollX: true,
         order: [],
         pageLength: 20,
-        drawCallback: function(settings) {
+        drawCallback: function (settings) {
             if (isNull(_grid) === false && isNull(_grid.selectedIndex) === false) {
                 _grid.row(_grid.selectedIndex).nodes().to$().addClass('selected');
             }
@@ -78,7 +77,7 @@ var createGrid = function(element, options) {
 
     _grid = $(element).DataTable(options);
 
-    $(element + ' tbody').on('click', 'tr', function() {
+    $(element + ' tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected'))
             return;
 
@@ -90,21 +89,21 @@ var createGrid = function(element, options) {
     return _grid;
 };
 
-var setScreen = function() {
+var setScreen = function () {
     var _screentime = $store.get('pylon.screen.time');
     if (isNull(_screentime) === false) $screenTime = parseInt(_screentime);
 
     $screenTimeId = setTimeout(logout, $screenTime);
-    $('html,body').on('keydown mousedown touchstart', function() {
+    $('html,body').on('keydown mousedown touchstart', function () {
         clearTimeout($screenTimeId);
         $screenTimeId = setTimeout(logout, $screenTime);
     });
 };
 
-var setAlarm = function() {
+var setAlarm = function () {
     $.ajax({
         url: $requestURI + 'getrealalarm?' + $systemAuth.token,
-        success: function(data, status) {
+        success: function (data, status) {
             if (isNullOrEmpty(data) === false &&
                 data.startWith('Error') === false) {
                 var alarms = $store.get('pylon.request.alarm');
@@ -114,27 +113,30 @@ var setAlarm = function() {
                         _alarms = JSON.parse(alarms);
 
                     var _data = JSON.parse(data);
-                    $.each(_data, function(index, item) {
+                    var _ended = false;
+                    $.each(_data, function (index, item) {
                         if (isNullOrEmpty(item.EndTime) === true) {
-                            var _current = _.find(_alarms, function(value) {
+                            var _current = _.find(_alarms, function (value) {
                                 return item.DeviceID === value.DeviceID && item.SignalID === value.SignalID;
                             });
                             if (isNull(_current) === true) {
                                 _alarms.push(item);
                             }
                         } else {
-                            var _current = _.find(_alarms, function(value) {
+                            var _current = _.find(_alarms, function (value) {
                                 return item.DeviceID === value.DeviceID && item.SignalID === value.SignalID;
                             });
                             if (isNull(_current) === false) {
                                 _alarms = _.without(_alarms, _current);
                             }
+
+                            _ended = true;
                         }
                     });
 
                     $store.set('pylon.request.alarm', JSON.stringify(_alarms));
                     setAlarmCount(_alarms);
-                    alarmCallback();
+                    alarmCallback(_alarms, _ended);
                 }
 
                 setTimeout(setAlarm, $alarmInterval);
@@ -143,24 +145,19 @@ var setAlarm = function() {
 
             logout();
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
             logout();
         }
     });
 };
 
-var setTime = function() {
-    $('#currentDateTime').html(moment().format('YYYY-MM-DD HH:mm:ss'));
-    setTimeout(setTime, 1000);
-};
-
-var setAlarmCount = function(data) {
+var setAlarmCount = function (data) {
     var _level1 = 0,
         _level2 = 0,
         _level3 = 0,
         _level4 = 0;
     if ($.isArray(data) && data.length > 0) {
-        $.each(data, function(name, value) {
+        $.each(data, function (name, value) {
             if (value.AlarmLevel == 1)
                 _level1++;
             else if (value.AlarmLevel == 2)
@@ -176,11 +173,12 @@ var setAlarmCount = function(data) {
     $('#currentAlarm2').html(_level2);
     $('#currentAlarm3').html(_level3);
     $('#currentAlarm4').html(_level4);
+    $('#currentAlarm').html(_level1 + _level2 + _level3 + _level4);
 };
 
-var alarmCallback = function() {};
+var alarmCallback = function (data, ended) {};
 
-var showAlert = function(title, content, theme) {
+var showAlert = function (title, content, theme) {
     var modal = $('#py-alert'),
         dialog = modal.children('.py-modal-dialog'),
         hd = dialog.children('.py-modal-hd'),

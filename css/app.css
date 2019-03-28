@@ -52,6 +52,30 @@ body {
     border-radius: 0;
 }
 
+.py-bottombar-nav .am-dropdown-up .am-dropdown-content {
+    background: #282d2f;
+    border: 1px solid #43454a;
+}
+
+.py-bottombar-nav .am-dropdown-up .am-dropdown-content:after,
+.py-bottombar-nav .am-dropdown-up .am-dropdown-content:before {
+    border-top: 8px solid #43454a;
+}
+
+.py-bottombar-nav .am-dropdown-up .am-dropdown-content:after {
+    border-top-color: #282d2f;
+}
+
+.py-bottombar-nav ul.am-dropdown-content>li>a {
+    color: #b3b3b3;
+}
+
+.py-bottombar-nav ul.am-dropdown-content>li>a:focus,
+.py-bottombar-nav ul.am-dropdown-content>li>a:hover {
+    color: #fff;
+    background-color: #43454a;
+}
+
 .py-topbar-badge {
     padding: 3px 5px;
     margin-top: 16px;
@@ -68,6 +92,10 @@ body {
 
 .py-icon-18:before {
     font-size: 18px;
+}
+
+.py-icon-19:before {
+    font-size: 19px;
 }
 
 .py-icon-20:before {
@@ -96,7 +124,7 @@ ul.py-dropdown-content>li>a {
 }
 
 .py-dropdown-header {
-    color: #999;
+    color: #fff;
     padding: 3px 5px;
 }
 
@@ -115,8 +143,6 @@ ul.py-dropdown-content>li>a {
 .am-datatable-center {
     margin-bottom: 5px;
 }
-
-.am-datatable-footer {}
 
 table.am-table {
     font-size: 12px;
@@ -619,4 +645,116 @@ fieldset {
     border-radius: 0;
     color: #fff;
     background: #282d2f;
+}
+
+.py-overview {
+    background-color: #f5f5f5;
+}
+
+.py-overview .py-overview-title {
+    height: 2.5rem;
+    line-height: 2.2rem;
+    color: #555;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-bottom: 1px solid #dfdfdf;
+    background-color: #ffffff;
+}
+
+.py-overview-title>i {
+    font-size: 1.5rem;
+}
+
+.py-overview-title>.text {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.py-overview-content {
+    padding: .5rem;
+}
+
+.py-overview-content .py-category>li {
+    padding: 0 .5rem 0 0;
+}
+
+.py-overview-content .py-category>li:last-child {
+    padding-right: 0;
+}
+
+.py-category .py-category-item {
+    padding: .8rem 1.5rem 1rem 1rem;
+    display: flex;
+}
+
+.py-category .py-category-icon {
+    font-size: 3.5rem;
+    flex: none;
+}
+
+.py-category .py-category-detail {
+    overflow: hidden;
+    text-align: right;
+    flex: 1;
+}
+
+.py-category .py-category-detail>.py-category-name {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-size: 1.2rem;
+    color: #fff;
+    letter-spacing: .2rem;
+    margin-top: .5rem;
+}
+
+.py-category .py-category-detail>.py-category-count {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.py-chart-container {
+    margin-top: .5rem;
+}
+
+.py-chart {
+    background-color: #ffffff;
+}
+
+.py-chart-separation-r {
+    margin-right: .3rem;
+}
+
+.py-chart-separation-l {
+    margin-left: .2rem;
+}
+
+.py-chart-title {
+    height: 2.5rem;
+    line-height: 2.2rem;
+    padding-left: .5rem;
+    text-align: left;
+    /* background-color: #dfdfdf; */
+    border: 1px solid #dfdfdf;
+}
+
+.py-chart-title>i {
+    font-size: 1.5rem;
+}
+
+.py-chart-title>.text {
+    font-size: 1.2rem;
+}
+
+.py-chart-content {
+    height: 15rem;
+    border: 1px solid #dfdfdf;
+    border-top: none;
+}
+
+.hidden {
+    display: none;
 }

@@ -8,7 +8,7 @@ $().ready(function() {
     done();
 });
 
-alarmCallback = function() {
+alarmCallback = function(data, ended) {
     load();
 };
 

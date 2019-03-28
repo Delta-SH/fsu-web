@@ -2,35 +2,40 @@
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#py-bottombar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
     <div id="py-bottombar-collapse" class="am-collapse am-topbar-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav py-bottombar-nav">
-            <li class="am-dropdown am-dropdown-up" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:void(0);" title="">
+            <li>
+                <a href="index.html" target="_self" title="系统主页">
                     <span class="am-icon-home py-icon-22 py-icon-bottom"></span>
                 </a>
-                <ul class="am-dropdown-content py-dropdown-content">
-                    <li class="am-dropdown-header py-dropdown-header">图形组态</li>
-                    <li><a href="index.html">实时组态</a></li>
-                    <li class="am-dropdown-header py-dropdown-header">实时监控</li>
-                    <li><a href="point.html">实时测值</a></li>
-                    <li><a href="alarm.html">实时告警</a></li>
-                </ul>
             </li>
         </ul>
         <div class="am-topbar-right py-bottombar-right">
             <ul class="am-nav am-nav-pills am-topbar-nav py-bottombar-nav">
-                <li>
-                    <a href="hisalarm.html" target="_self" title="历史告警">
-                        <span class="am-icon-bell py-icon-18 py-icon-bottom"></span>
+                <li class="am-dropdown am-dropdown-up" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:void(0);" title="实时监控">
+                        <span class="am-icon-tachometer py-icon-19 py-icon-bottom"></span>
                     </a>
+                    <ul class="am-dropdown-content py-dropdown-content">
+                        <li class="am-dropdown-header py-dropdown-header">实时数据</li>
+                        <li><a href="point.html">实时测值</a></li>
+                        <li><a href="alarm.html">实时告警</a></li>
+                        <li class="am-dropdown-header py-dropdown-header">图形界面</li>
+                        <li><a href="view.html">实时组态</a></li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="hispoint.html" target="_self" title="历史性能">
-                        <span class="am-icon-file-text py-icon-18 py-icon-bottom"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="hischart.html" target="_self" title="历史曲线">
+                <li class="am-dropdown am-dropdown-up" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:void(0);" title="系统报表">
                         <span class="am-icon-bar-chart py-icon-18 py-icon-bottom"></span>
                     </a>
+                    <ul class="am-dropdown-content py-dropdown-content">
+                        <li class="am-dropdown-header py-dropdown-header">基础报表</li>
+                        <li><a href="hisdevice.html">设备统计</a></li>
+                        <li class="am-dropdown-header py-dropdown-header">历史报表</li>
+                        <li><a href="hispoint.html">历史性能</a></li>
+                        <li><a href="hisalarm.html">历史告警</a></li>
+                        <li class="am-dropdown-header py-dropdown-header">图形报表</li>
+                        <li><a href="hischart.html">性能曲线</a></li>
+                        <li><a href="hiscount.html">统计曲线</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="setting.html" target="_self" title="系统设置">

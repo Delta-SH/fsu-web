@@ -1,5 +1,5 @@
 var auth = null;
-var steps = 3;
+var steps = 5;
 var finish = [];
 var timerid = null;
 var timercnt = 0;
@@ -65,11 +65,51 @@ var setDevice = function() {
             $store.set('pylon.request.device', data);
             finish.push('pylon.request.device');
             setProgress();
+            setDevType(data);
+            setRoom(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             showError(String.format('设备加载失败({0}:{1}:{2})', jqXHR.status, jqXHR.statusText, jqXHR.responseText));
         }
     });
+};
+
+var setDevType = function(data){
+    var devices = JSON.parse(data);
+    if (devices.length === 0) {
+        showError(String.format('设备类型加载失败({0})', data));
+        return false;
+    }
+
+    var types = [];
+    $.each(devices, function(index, item) {
+       if(_.contains(types, item.Type) === false){
+           types.push(item.Type);
+       }
+    });
+    
+    $store.set('pylon.request.devtype', _.sortBy(types));
+    finish.push('pylon.request.devtype');
+    setProgress();
+};
+
+var setRoom = function(data){
+    var devices = JSON.parse(data);
+    if (devices.length === 0) {
+        showError(String.format('机房加载失败({0})', data));
+        return false;
+    }
+
+    var rooms = [];
+    $.each(devices, function(index, item) {
+       if(_.contains(rooms, item.Room) === false){
+            rooms.push(item.Room);
+       }
+    });
+    
+    $store.set('pylon.request.room', _.sortBy(rooms));
+    finish.push('pylon.request.room');
+    setProgress();
 };
 
 var setAlarm = function() {
