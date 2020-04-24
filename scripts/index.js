@@ -89,7 +89,7 @@ var option2 = {
         {
             name: '活动告警占比',
             type: 'pie',
-            radius : [40, 80],
+            radius : [35, 70],
             center : ['62%', '50%'],
             avoidLabelOverlap: false,
             label: {
@@ -248,7 +248,7 @@ var option4 = {
         {
             name: '历史告警占比',
             type: 'pie',
-            radius : [40, 80],
+            radius : [35, 70],
             center : ['62%', '50%'],
             avoidLabelOverlap: false,
             label: {

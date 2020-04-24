@@ -683,7 +683,7 @@ fieldset {
 }
 
 .py-category .py-category-item {
-    padding: .8rem 1.5rem 1rem 1rem;
+    padding: 1rem;
     display: flex;
 }
 
@@ -750,7 +750,7 @@ fieldset {
 }
 
 .py-chart-content {
-    height: 15rem;
+    height: 18rem;
     border: 1px solid #dfdfdf;
     border-top: none;
 }

@@ -4,8 +4,8 @@ if (!$store.enabled) {
     alert('您的浏览器不支持本地存储功能，请升级浏览器。');
 }
 
-var $requestURI = 'http://192.168.10.220/api/bi/';
-var $requestUid = 'ius';
+var $requestURI = 'http://'+$config.ip + ':' + $config.port + '/' + $config.path;
+var $requestUid = $config.user;
 $.ajaxSetup({
     timeout: 30000,
     type: "post",
