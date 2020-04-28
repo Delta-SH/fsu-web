@@ -1,11 +1,31 @@
+html,
+body {
+    height: 100%;
+}
+
 body {
     font-size: 12px;
+}
+
+#py-header {
+    min-height: 51px;
+}
+#py-center {
+    width: 100%;
+    position: absolute;
+    top: 51px;
+    bottom: 41px;
+    overflow-y: auto;
+}
+#py-footer {
+    min-height: 41px;
 }
 
 .py-topbar {
     background: #282d2f;
     border: none;
     border-bottom: 1px solid #43454a;
+    margin-bottom: 0;
 }
 
 .py-topbar-brand {
@@ -137,7 +157,10 @@ ul.py-dropdown-content>li>a {
 }
 
 .am-with-topbar-fixed-bottom {
-    padding-bottom: 41px;
+    padding-bottom: 0;
+}
+.am-with-topbar-fixed-top {
+    padding-top:0;
 }
 
 .am-datatable-center {
@@ -757,4 +780,19 @@ fieldset {
 
 .hidden {
     display: none;
+}
+
+.ztree li a {
+    padding: 4px 3px 4px 0;
+    height: auto;
+}
+
+.ztree li a.curSelectedNode {
+    height: auto;
+    border: none;
+}
+
+.ztree li span {
+    margin-left: 2px;
+    font-size: 13px;
 }
