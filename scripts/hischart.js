@@ -261,7 +261,7 @@ var loadPoints = function(node) {
                     var _data = JSON.parse(data);
                     var _nodes = [];
                     $.each(_data, function(index, item) {
-                        if (item.Type === '遥控' || item.Type === '遥调' || item.Type === '遥信')
+                        if (item.Type == 2 || item.Type == 3 || item.Type == 0)
                             return true;
 
                         _nodes.push({

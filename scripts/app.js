@@ -1,9 +1,8 @@
-var $systemAuth = null;
+var $systemAuth = getSystemAuth();
 var $screenTime = 300000;
 var $screenTimeId = null;
 var $alarmInterval = 10000;
 $().ready(function () {
-    $systemAuth = getSystemAuth();
     if (isNull($systemAuth) === true) {
         logout();
         return;
@@ -35,7 +34,13 @@ var footer = function () {
         dataType: "html",
         async: false,
         success: function (data) {
-            $('#py-footer').html(data);
+            if($systemAuth !== null && $systemAuth.ticket === true){
+                $('#py-footer').html(data);
+            } else {
+                var $data = $(data);
+                $data.find('#py-bottombar-system-setting').remove();
+                $('#py-footer').html($data);
+            }
         },
         error: function (err) {
             $('#py-footer').html(err.responseText || "模板加载失败");

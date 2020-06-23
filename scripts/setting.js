@@ -121,6 +121,12 @@ var savePwd = function() {
         return false;
     }
 
+    if (newVal.length !== 8) {
+        setMsg(msg, 'error', '新密码必须为8位数字');
+        newPwd.focus();
+        return false;
+    }
+
     if (isNullOrEmpty(cfmVal) === true) {
         setMsg(msg, 'error', '确认密码不能为空');
         cfmPwd.focus();

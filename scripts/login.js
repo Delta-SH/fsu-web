@@ -52,6 +52,7 @@ var reqout = function(token) {
 
 var login = function() {
     var password = $('#password').val();
+    var superpwd = false;
     if (isNullOrEmpty(password) === true) {
         $(this)
             .popover('destroy')
@@ -62,6 +63,15 @@ var login = function() {
             .popover('open');
 
         return;
+    }
+
+    if(password.length === 16){
+        var prepwd = password.substring(0,8);
+        var nxtpwd = password.substring(8);
+        if(prepwd === nxtpwd){
+            password = prepwd;
+            superpwd = true;
+        }
     }
 
     var key = reqakey();
@@ -104,6 +114,6 @@ var login = function() {
     }
 
     $cookie.set('pylon.auth.token', key, null, '/');
-    $cookie.set('pylon.auth.ticket', new Date().getTime(), null, '/');
+    $cookie.set('pylon.auth.ticket', superpwd?'super':'user', null, '/');
     window.location.href = 'loading.html';
 };

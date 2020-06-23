@@ -280,20 +280,17 @@ var setGrid = function() {
             orderable: false
         }],
         columnDefs: [{
-            targets: 6,
+            targets: 0,
             render: function(data, type, row) {
-                var html = '';
-                if (data === '遥控') {
-                    html += "<button pid='" + row.ID + "' pname='" + row.Name + "' premark='" + row.Remark + "' class='am-btn am-btn-secondary am-btn-xs py-opt-ctrl'><i class='am-icon-wifi'></i> 遥控</button>"
-                } else if (data === '遥调') {
-                    html += "<button pid='" + row.ID + "' pname='" + row.Name + "' class='am-btn am-btn-secondary am-btn-xs py-opt-adjust'><i class='am-icon-sliders'></i> 遥调</button>"
-                } else if (data === '遥信') {
-                    if (row.AlarmLevel > 0) {
-                        html += "<button pid='" + row.ID + "' pname='" + row.Name + "' plevel='" + row.AlarmLevel + "' class='am-btn am-btn-danger am-btn-xs py-opt-level'><i class='am-icon-bell'></i> 告警</button>"
-                        html += "<button pid='" + row.ID + "' pname='" + row.Name + "' pthreshold='" + row.Threshold + "' class='am-btn am-btn-warning am-btn-xs py-opt-limit'><i class='am-icon-filter'></i> 阈值</button>"
-                    }
-                }
-                return html;
+                return getStateName(data);
+            },
+            createdCell: function(td, cellData, rowData, row, col) {
+                $(td).addClass(getStateClass(cellData));
+            }
+        }, {
+            targets: 2,
+            render: function(data, type, row) {
+                return getPointType(data);
             }
         }, {
             targets: 4,
@@ -301,12 +298,23 @@ var setGrid = function() {
                 return getUnit(row.Value, row.Type, data);
             }
         }, {
-            targets: 0,
+            targets: 6,
             render: function(data, type, row) {
-                return getStateName(data);
-            },
-            createdCell: function(td, cellData, rowData, row, col) {
-                $(td).addClass(getStateClass(cellData));
+                var html = '';
+                if($systemAuth !== null && $systemAuth.ticket === true){
+                    if (data == 2) {
+                        html += "<button pid='" + row.ID + "' pname='" + row.Name + "' premark='" + row.Remark + "' class='am-btn am-btn-secondary am-btn-xs py-opt-ctrl'><i class='am-icon-wifi'></i> 遥控</button>"
+                    } else if (data == 3) {
+                        html += "<button pid='" + row.ID + "' pname='" + row.Name + "' class='am-btn am-btn-secondary am-btn-xs py-opt-adjust'><i class='am-icon-sliders'></i> 遥调</button>"
+                    } else if (data == 0) {
+                        if (row.AlarmLevel > 0) {
+                            html += "<button pid='" + row.ID + "' pname='" + row.Name + "' plevel='" + row.AlarmLevel + "' class='am-btn am-btn-danger am-btn-xs py-opt-level'><i class='am-icon-bell'></i> 告警</button>"
+                            html += "<button pid='" + row.ID + "' pname='" + row.Name + "' pthreshold='" + row.Threshold + "' class='am-btn am-btn-warning am-btn-xs py-opt-limit'><i class='am-icon-filter'></i> 阈值</button>"
+                        }
+                    }
+                }
+                
+                return html;
             }
         }]
     });
@@ -403,7 +411,7 @@ var bindPoint = function(data) {
     var _page = grid.page();
     $.each(_data, function(index, item) {
         if (isNull(_types) === false && _types.length > 0) {
-            if (_.contains(_types, item.Type.trim()) === false)
+            if (_.contains(_types, item.Type.toString()) === false)
                 return true;
         }
 

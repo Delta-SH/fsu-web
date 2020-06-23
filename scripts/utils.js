@@ -59,6 +59,21 @@ var getAlarmName = function(value) {
     }
 };
 
+var getPointType = function(value) {
+    value = value.toString();
+    if (value === '0') {
+        return '遥信';
+    } else if (value === '1') {
+        return '遥测';
+    } else if (value === '2') {
+        return '遥控';
+    } else if (value === '3') {
+        return '遥调';
+    } else {
+        return '未定义';
+    }
+};
+
 var getAlarmClass = function(value) {
     if (value === 1) {
         return 'py-level-1';
@@ -114,7 +129,8 @@ var getStateClass = function(value) {
 };
 
 var getUnit = function(value, type, desc) {
-    if (type === '遥信' || type === '遥控') {
+    type = type.toString();
+    if (type === '0' || type === '2') {
         var result = '';
         var pairs = desc.split(';');
         $.each(pairs, function(index, item) {
@@ -158,7 +174,7 @@ var getSystemAuth = function() {
 
     return {
         token: token,
-        ticket: ticket
+        ticket: (ticket === 'super')
     };
 };
 
