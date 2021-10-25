@@ -615,6 +615,8 @@ var setFsuInfo = function () {
         $("#fsu-software").html(config.Software || "");
         $("#fsu-cpuusage").html(String.format("{0}%", config.CPUUsage || 0));
         $("#fsu-emeusage").html(String.format("{0}%", config.MemUsage || 0));
+        $("#fsu-rom").html(String.format("{0}MB", config.ROM || 0));
+        $("#fsu-ram").html(String.format("{0}MB", config.RAM || 0));
         $("#fsu-memavailable").html(
           String.format("{0}MB", config.MemAvailable || 0)
         );
