@@ -628,25 +628,25 @@ var setFsuInfo = function () {
         $("#fsu-wirelessinfo").html(
           String.format(
             "运营商：{0} &nbsp;&nbsp;&nbsp;&nbsp; 制式：{1} &nbsp;&nbsp;&nbsp;&nbsp; 信号：{2}",
-            config.WirelessInfo?.Provider,
-            config.WirelessInfo?.Standard,
-            config.WirelessInfo?.Signal
+            config.WirelessInfo.Provider,
+            config.WirelessInfo.Standard,
+            config.WirelessInfo.Signal
           )
         );
         $("#fsu-wirelessaddress").html(config.WirelessAddress || "");
         $("#fsu-wirelesstraffic").html(
           String.format(
             "接收：{0} 字节 &nbsp;&nbsp;&nbsp;&nbsp; 发送：{1} 字节",
-            config.WirelessTraffic?.Receive,
-            config.WirelessTraffic?.Send
+            config.WirelessTraffic.Receive,
+            config.WirelessTraffic.Send
           )
         );
         $("#fsu-vpnaddress").html(config.VPNAddress || "");
         $("#fsu-vpntraffic").html(
           String.format(
             "接收：{0} 字节 &nbsp;&nbsp;&nbsp;&nbsp; 发送：{1} 字节",
-            config.VPNTraffic?.Receive,
-            config.VPNTraffic?.Send
+            config.VPNTraffic.Receive,
+            config.VPNTraffic.Send
           )
         );
       }
