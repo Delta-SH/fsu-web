@@ -1,185 +1,303 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>数据机房监控系统</title>
-    <meta name="renderer" content="webkit">
+    <meta name="renderer" content="webkit" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="32x32" href="favicon.ico">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="icon" sizes="32x32" href="favicon.ico" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="数据机房监控系统" />
-    <link rel="apple-touch-icon-precomposed" href="favicon.ico">
-    <link rel="stylesheet" href="css/framework/amazeui.min.css?v=1.2.2" />
-    <link rel="stylesheet" href="css/framework/amazeui.datatables.min.css?v=1.2.2" />
-    <link rel="stylesheet" href="css/keypicker.css?v=1.2.2">
-    <link rel="stylesheet" href="css/app.css?v=1.2.2">
-</head>
-<body>
+    <link rel="apple-touch-icon-precomposed" href="favicon.ico" />
+    <link rel="stylesheet" href="css/framework/amazeui.min.css?v=1.2.3" />
+    <link
+      rel="stylesheet"
+      href="css/framework/amazeui.datatables.min.css?v=1.2.3"
+    />
+    <link rel="stylesheet" href="css/keypicker.css?v=1.2.3" />
+    <link rel="stylesheet" href="css/app.css?v=1.2.3" />
+  </head>
+  <body>
     <div id="py-header"></div>
     <div id="py-center">
-        <div class="py-overview">
-            <div class="py-overview-title hidden">
-                <i class="am-icon-dashboard am-icon-fw"></i>
-                <span class="text">系统概览</span>
-            </div>
-            <div class="py-overview-content">
-                <ul class="am-avg-sm-5 py-category">
-                        <li>
-                            <div class="am-badge am-badge-success py-category-item">
-                                <div class="am-icon-th-large am-icon-fw py-category-icon"></div>
-                                <div class="py-category-detail">
-                                    <p id="py-category-alarm" class="py-category-count">0</p>
-                                    <h3 class="py-category-name">所有告警</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-badge am-badge-danger py-category-item">
-                                <div class="am-icon-bolt am-icon-fw py-category-icon"></div>
-                                <div class="py-category-detail">
-                                    <p id="py-category-alarm1" class="py-category-count">0</p>
-                                    <h3 class="py-category-name">一级告警</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-badge am-badge-warning py-category-item">
-                                <div class="am-icon-bell am-icon-fw py-category-icon"></div>
-                                <div class="py-category-detail">
-                                    <p id="py-category-alarm2" class="py-category-count">0</p>
-                                    <h3 class="py-category-name">二级告警</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-badge py-badge-yellow py-category-item">
-                                <div class="am-icon-warning am-icon-fw py-category-icon"></div>
-                                <div class="py-category-detail">
-                                    <p id="py-category-alarm3" class="py-category-count">0</p>
-                                    <h3 class="py-category-name">三级告警</h3>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="am-badge am-badge-secondary py-category-item">
-                                <div class="am-icon-bookmark am-icon-fw py-category-icon"></div>
-                                <div class="py-category-detail">
-                                    <p id="py-category-alarm4" class="py-category-count">0</p>
-                                    <h3 class="py-category-name">四级告警</h3>
-                                </div>
-                            </div>
-                        </li>
-                </ul>
-                <div class="am-g py-chart-container">
-                    <div class="am-u-sm-8">
-                        <div class="py-chart py-chart-separation-r">
-                            <div class="py-chart-title">
-                                <i class="am-icon-bar-chart-o am-icon-fw"></i>
-                                <span class="text">活动告警分布</span>
-                            </div>
-                            <div id="py-categroy-chart1" class="py-chart-content">
-    
-                            </div>
-                        </div>
-                    </div>
-                    <div class="am-u-sm-4">
-                        <div class="py-chart py-chart-separation-l">
-                            <div class="py-chart-title">
-                                <i class="am-icon-pie-chart am-icon-fw"></i>
-                                <span class="text">活动告警占比</span>
-                            </div>
-                            <div id="py-categroy-chart2" class="py-chart-content">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="am-g py-chart-container">
-                        <div class="am-u-sm-8">
-                            <div class="py-chart py-chart-separation-r">
-                                <div class="py-chart-title">
-                                    <i class="am-icon-area-chart am-icon-fw"></i>
-                                    <span class="text">历史告警趋势(近30天)</span>
-                                </div>
-                                <div id="py-categroy-chart3" class="py-chart-content">
-        
-                                </div>
-                            </div>
-                        </div>
-                        <div class="am-u-sm-4">
-                            <div class="py-chart py-chart-separation-l">
-                                <div class="py-chart-title">
-                                    <i class="am-icon-pie-chart am-icon-fw"></i>
-                                    <span class="text">历史告警占比(近30天)</span>
-                                </div>
-                                <div id="py-categroy-chart4" class="py-chart-content">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="am-g py-chart-container hidden">
-                    <div class="am-u-sm-6">
-                        <div class="py-chart py-chart-separation-r">
-                            <div class="py-chart-title">
-                                <i class="am-icon-area-chart am-icon-fw"></i>
-                                <span class="text">CPU利用率</span>
-                            </div>
-                            <div class="py-chart-content">   
-                            </div>
-                        </div>
-                    </div>
-                    <div class="am-u-sm-6">
-                        <div class="py-chart py-chart-separation-l">
-                            <div class="py-chart-title">
-                                <i class="am-icon-area-chart am-icon-fw"></i>
-                                <span class="text">内存占用率</span>
-                            </div>
-                            <div class="py-chart-content">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="py-overview">
+        <div class="py-overview-title hidden">
+          <i class="am-icon-dashboard am-icon-fw"></i>
+          <span class="text">系统概览</span>
         </div>
+        <div class="py-overview-content">
+          <ul class="am-avg-sm-5 py-category">
+            <li>
+              <div class="am-badge am-badge-success py-category-item">
+                <div class="am-icon-th-large am-icon-fw py-category-icon"></div>
+                <div class="py-category-detail">
+                  <p id="py-category-alarm" class="py-category-count">0</p>
+                  <h3 class="py-category-name">所有告警</h3>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="am-badge am-badge-danger py-category-item">
+                <div class="am-icon-bolt am-icon-fw py-category-icon"></div>
+                <div class="py-category-detail">
+                  <p id="py-category-alarm1" class="py-category-count">0</p>
+                  <h3 class="py-category-name">一级告警</h3>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="am-badge am-badge-warning py-category-item">
+                <div class="am-icon-bell am-icon-fw py-category-icon"></div>
+                <div class="py-category-detail">
+                  <p id="py-category-alarm2" class="py-category-count">0</p>
+                  <h3 class="py-category-name">二级告警</h3>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="am-badge py-badge-yellow py-category-item">
+                <div class="am-icon-warning am-icon-fw py-category-icon"></div>
+                <div class="py-category-detail">
+                  <p id="py-category-alarm3" class="py-category-count">0</p>
+                  <h3 class="py-category-name">三级告警</h3>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="am-badge am-badge-secondary py-category-item">
+                <div class="am-icon-bookmark am-icon-fw py-category-icon"></div>
+                <div class="py-category-detail">
+                  <p id="py-category-alarm4" class="py-category-count">0</p>
+                  <h3 class="py-category-name">四级告警</h3>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="am-g py-chart-container">
+            <div class="am-u-sm-8">
+              <div class="py-chart py-chart-separation-r">
+                <div class="py-chart-title">
+                  <i class="am-icon-bar-chart-o am-icon-fw"></i>
+                  <span class="text">活动告警分布</span>
+                </div>
+                <div id="py-categroy-chart1" class="py-chart-content"></div>
+              </div>
+            </div>
+            <div class="am-u-sm-4">
+              <div class="py-chart py-chart-separation-l">
+                <div class="py-chart-title">
+                  <i class="am-icon-pie-chart am-icon-fw"></i>
+                  <span class="text">活动告警占比</span>
+                </div>
+                <div id="py-categroy-chart2" class="py-chart-content"></div>
+              </div>
+            </div>
+          </div>
+          <div class="am-g py-chart-container">
+            <div class="am-u-sm-8">
+              <div class="py-chart py-chart-separation-r">
+                <div class="py-chart-title">
+                  <i class="am-icon-area-chart am-icon-fw"></i>
+                  <span class="text">历史告警趋势(近30天)</span>
+                </div>
+                <div id="py-categroy-chart3" class="py-chart-content"></div>
+              </div>
+            </div>
+            <div class="am-u-sm-4">
+              <div class="py-chart py-chart-separation-l">
+                <div class="py-chart-title">
+                  <i class="am-icon-pie-chart am-icon-fw"></i>
+                  <span class="text">历史告警占比(近30天)</span>
+                </div>
+                <div id="py-categroy-chart4" class="py-chart-content"></div>
+              </div>
+            </div>
+          </div>
+          <div class="am-g py-chart-container hidden">
+            <div class="am-u-sm-6">
+              <div class="py-chart py-chart-separation-r">
+                <div class="py-chart-title">
+                  <i class="am-icon-area-chart am-icon-fw"></i>
+                  <span class="text">CPU利用率</span>
+                </div>
+                <div class="py-chart-content"></div>
+              </div>
+            </div>
+            <div class="am-u-sm-6">
+              <div class="py-chart py-chart-separation-l">
+                <div class="py-chart-title">
+                  <i class="am-icon-area-chart am-icon-fw"></i>
+                  <span class="text">内存占用率</span>
+                </div>
+                <div class="py-chart-content"></div>
+              </div>
+            </div>
+          </div>
+          <div class="am-g py-chart-container">
+            <div class="am-u-sm-12">
+              <div class="py-chart">
+                <div class="py-chart-title">
+                  <i class="am-icon-desktop am-icon-fw"></i>
+                  <span class="text">系统信息</span>
+                </div>
+                <div class="py-chart-content auto-height">
+                  <table
+                    cellpadding="0"
+                    cellspacing="0"
+                    border="0"
+                    width="100%"
+                    class="
+                      am-table am-table-striped am-table-bordered
+                      info-table
+                    "
+                  >
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="title">硬件版本</div>
+                          <div id="fsu-firmware" class="content"></div>
+                        </td>
+                        <td>
+                          <div class="title">软件版本</div>
+                          <div id="fsu-software" class="content"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="title">CPU使用率</div>
+                          <div id="fsu-cpuusage" class="content"></div>
+                        </td>
+                        <td>
+                          <div class="title">内存使用率</div>
+                          <div id="fsu-emeusage" class="content"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="title">主存可用容量</div>
+                          <div id="fsu-memavailable" class="content"></div>
+                        </td>
+                        <td>
+                          <div class="title">辅存可用容量</div>
+                          <div id="fsu-memavailable2" class="content"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <div class="title">系统运行时长</div>
+                          <div id="fsu-runtime" class="content"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="title">无线模块型号</div>
+                          <div id="fsu-wirelessmodule" class="content"></div>
+                        </td>
+                        <td>
+                          <div class="title">无线设备编码</div>
+                          <div id="fsu-wirelessdevice" class="content"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="title">无线手机卡号</div>
+                          <div id="fsu-wirelessmobile" class="content"></div>
+                        </td>
+                        <td>
+                          <div class="title">无线制式信号</div>
+                          <div id="fsu-wirelessinfo" class="content"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="title">无线地址</div>
+                          <div id="fsu-wirelessaddress" class="content"></div>
+                        </td>
+                        <td>
+                          <div class="title">无线流量</div>
+                          <div id="fsu-wirelesstraffic" class="content"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="title">VPN地址</div>
+                          <div id="fsu-vpnaddress" class="content"></div>
+                        </td>
+                        <td>
+                          <div class="title">VPN流量</div>
+                          <div id="fsu-vpntraffic" class="content"></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="py-footer"></div>
-    <div id="py-masking" class="am-modal am-modal-active py-masking" tabindex="-1">
-        <div class="py-masking-info">
-            <i class="am-icon-spinner am-icon-spin"></i> 正在加载...
-        </div>
+    <div
+      id="py-masking"
+      class="am-modal am-modal-active py-masking"
+      tabindex="-1"
+    >
+      <div class="py-masking-info">
+        <i class="am-icon-spinner am-icon-spin"></i> 正在加载...
+      </div>
     </div>
     <div id="py-alert" class="am-modal am-modal-alert" tabindex="-1">
-        <div class="am-modal-dialog py-modal-dialog">
-            <div class="am-modal-hd py-modal-hd">
-                <i class="am-icon-info-circle"></i> 系统消息
-            </div>
-            <div class="am-modal-bd py-modal-bd">
-            </div>
-            <div class="am-modal-footer py-modal-footer">
-                <div class="am-modal-btn py-modal-btn">确定</div>
-            </div>
+      <div class="am-modal-dialog py-modal-dialog">
+        <div class="am-modal-hd py-modal-hd">
+          <i class="am-icon-info-circle"></i> 系统消息
         </div>
+        <div class="am-modal-bd py-modal-bd"></div>
+        <div class="am-modal-footer py-modal-footer">
+          <div class="am-modal-btn py-modal-btn">确定</div>
+        </div>
+      </div>
     </div>
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="scripts/framework/jquery.min.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/framework/amazeui.min.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/framework/amazeui.datatables.min.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/framework/moment.min.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/framework/underscore.min.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/framework/echarts.common.min.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/framework/echarts.theme.shine.min.js?v=1.2.2" type="text/javascript"></script>
-    <script src="config.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/keypicker.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/utils.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/app.js?v=1.2.2" type="text/javascript"></script>
-    <script src="scripts/index.js?v=1.2.2" type="text/javascript"></script>
-</body>
+    <script
+      src="scripts/framework/jquery.min.js?v=1.2.3"
+      type="text/javascript"
+    ></script>
+    <script
+      src="scripts/framework/amazeui.min.js?v=1.2.3"
+      type="text/javascript"
+    ></script>
+    <script
+      src="scripts/framework/amazeui.datatables.min.js?v=1.2.3"
+      type="text/javascript"
+    ></script>
+    <script
+      src="scripts/framework/moment.min.js?v=1.2.3"
+      type="text/javascript"
+    ></script>
+    <script
+      src="scripts/framework/underscore.min.js?v=1.2.3"
+      type="text/javascript"
+    ></script>
+    <script
+      src="scripts/framework/echarts.common.min.js?v=1.2.3"
+      type="text/javascript"
+    ></script>
+    <script
+      src="scripts/framework/echarts.theme.shine.min.js?v=1.2.3"
+      type="text/javascript"
+    ></script>
+    <script src="config.js?v=1.2.3" type="text/javascript"></script>
+    <script src="scripts/keypicker.js?v=1.2.3" type="text/javascript"></script>
+    <script src="scripts/utils.js?v=1.2.3" type="text/javascript"></script>
+    <script src="scripts/app.js?v=1.2.3" type="text/javascript"></script>
+    <script src="scripts/index.js?v=1.2.3" type="text/javascript"></script>
+  </body>
 </html>
