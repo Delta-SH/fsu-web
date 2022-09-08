@@ -626,7 +626,7 @@ fieldset {
 }
 
 .py-setting-toolbar {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .py-setting-toolbar button {
@@ -851,4 +851,31 @@ fieldset {
 .ztree li span {
   margin-left: 2px;
   font-size: 13px;
+}
+
+.upload-progress {
+  width: 100%;
+  height: 3px;
+  position: relative;
+}
+
+.upload-progress > .progress-inner {
+  background-color: #5eb95e;
+  height: 100%;
+  width: 0%;
+  transition: width 0.2s linear;
+  -moz-transition: width 0.2s linear;
+  -webkit-transition: width 0.2s linear;
+  -o-transition: width 0.2s linear;
+}
+
+.am-modal-bd {
+  padding: 25px 10px !important;
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 641px) {
+  .am-modal-dialog {
+    width: 360px !important;
+  }
 }
