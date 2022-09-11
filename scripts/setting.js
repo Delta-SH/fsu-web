@@ -419,6 +419,7 @@ var saveUpgrade = function () {
         type: "post",
         url: $requestURI + "upload?" + $systemAuth.token,
         data: formData,
+        timeout: 1200000,
         async: true,
         cache: false,
         contentType: false,
