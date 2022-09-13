@@ -50,9 +50,8 @@ var setTree = function () {
   };
 
   var data = $store.get("pylon.request.device");
-  if (isNull(data) === false) {
-    var _data = JSON.parse(data);
-    var _devs = _.groupBy(_data, function (value) {
+  if (data.length > 0) {
+    var _devs = _.groupBy(data, function (value) {
       return value.Room;
     });
 
@@ -175,9 +174,8 @@ var setData = function (data) {
 
   var _maps = new HashMap();
   var devices = $store.get("pylon.request.device");
-  if (isNull(devices) === false) {
-    var _devices = JSON.parse(devices);
-    $.each(_devices, function (index, item) {
+  if (devices.length > 0) {
+    $.each(devices, function (index, item) {
       _maps.put(item.ID, item);
     });
   }

@@ -21,8 +21,7 @@ var setSize = function () {
 };
 
 var setData = function (data) {
-  var _data = JSON.parse(data);
-  if (_data.length === 0) {
+  if (data.length === 0) {
     grid.clear().draw();
     return true;
   }
@@ -33,7 +32,7 @@ var setData = function (data) {
   if (curnode !== null && curnode.type === 0) {
     _room = curnode.id;
   }
-  $.each(_data, function (index, item) {
+  $.each(data, function (index, item) {
     if (isNull(_types) === false && _types.length > 0) {
       if (_.contains(_types, item.Type) === false) return true;
     }
@@ -157,10 +156,6 @@ var query = function () {
   me.button("loading");
   grid.clear().draw();
 
-  var data = $store.get("pylon.request.device");
-  if (isNullOrEmpty(data) === false) {
-    setData(data);
-  }
-
+  setData($store.get("pylon.request.device"));
   me.button("reset");
 };

@@ -332,11 +332,8 @@ alarmCallback = function (data, ended) {
 
 var getCategory = function () {
   var alarms = $store.get("pylon.request.alarm");
-  if (isNullOrEmpty(alarms) === false) {
-    var data = JSON.parse(alarms);
-    if ($.isArray(data) && data.length > 0) {
-      return data;
-    }
+  if ($.isArray(alarms) && alarms.length > 0) {
+    return alarms;
   }
 
   return null;
@@ -422,9 +419,8 @@ var setChart1 = function (data) {
 
   var _maps = new HashMap();
   var devices = $store.get("pylon.request.device");
-  if (isNull(devices) === false) {
-    var _devices = JSON.parse(devices);
-    $.each(_devices, function (index, item) {
+  if (devices.length > 0) {
+    $.each(devices, function (index, item) {
       _maps.put(item.ID, item);
     });
   }

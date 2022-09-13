@@ -49,9 +49,8 @@ var setTree = function () {
   };
 
   var data = $store.get("pylon.request.device");
-  if (isNull(data) === false) {
-    var _data = JSON.parse(data);
-    var _devs = _.groupBy(_data, function (value) {
+  if (data.length > 0) {
+    var _devs = _.groupBy(data, function (value) {
       return value.Room;
     });
 
@@ -224,10 +223,12 @@ var loadPoints = function (node) {
     success: function (data, status) {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
-          var _data = JSON.parse(data);
           var _nodes = [];
+          var _data = JSON.parse(data);
           $.each(_data, function (index, item) {
-            if (item.Type == 2 || item.Type == 3) return true;
+            if (item.Type == 2 || item.Type == 3) {
+              return true;
+            }
 
             _nodes.push({
               id: item.ID,

@@ -127,9 +127,8 @@ var setTree = function () {
   };
 
   var data = $store.get("pylon.request.device");
-  if (isNull(data) === false) {
-    var _data = JSON.parse(data);
-    var _devs = _.groupBy(_data, function (value) {
+  if (data.length > 0) {
+    var _devs = _.groupBy(data, function (value) {
       return value.Room;
     });
 

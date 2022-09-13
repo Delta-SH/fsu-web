@@ -107,7 +107,7 @@ var setMsg = function (element, type, message) {
     icon = "<i class='am-icon-spinner am-icon-spin'></i>&nbsp;";
   }
 
-  element.html(icon + message);
+  element.html(icon + (message || ""));
 };
 
 var setUpload = function () {
@@ -128,6 +128,7 @@ var setUpload = function () {
     }
 
     setProgress(0);
+    setMsg($("#upgrade-msg"));
   });
 };
 
@@ -400,9 +401,10 @@ var saveScrval = function () {
 };
 
 var saveUpgrade = function () {
-  setProgress(0);
-
   var msg = $("#upgrade-msg");
+  setProgress(0);
+  setMsg(msg);
+
   var files = $("#upgrade-form-file")[0].files;
   if (files && files.length > 0) {
     var file = files[0];
@@ -419,7 +421,7 @@ var saveUpgrade = function () {
         type: "post",
         url: $requestURI + "upload?" + $systemAuth.token,
         data: formData,
-        timeout: 1200000,
+        timeout: 300000,
         async: true,
         cache: false,
         contentType: false,
