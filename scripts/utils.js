@@ -200,10 +200,12 @@ String.prototype.startWith = function (value, ignoreCase) {
 
   ignoreCase = ignoreCase || false;
   if (ignoreCase === true) {
-    return this.substr(0, value.length).toLowerCase() === value.toLowerCase();
+    return (
+      this.substring(0, value.length).toLowerCase() === value.toLowerCase()
+    );
   }
 
-  return this.substr(0, value.length) === value;
+  return this.substring(0, value.length) === value;
 };
 
 String.prototype.endWith = function (value, ignoreCase) {
@@ -219,12 +221,12 @@ String.prototype.endWith = function (value, ignoreCase) {
   ignoreCase = ignoreCase || false;
   if (ignoreCase === true) {
     return (
-      this.substr(this.length - value.length).toLowerCase() ===
+      this.substring(this.length - value.length).toLowerCase() ===
       value.toLowerCase()
     );
   }
 
-  return this.substr(this.length - value.length) === value;
+  return this.substring(this.length - value.length) === value;
 };
 
 String.format = function () {

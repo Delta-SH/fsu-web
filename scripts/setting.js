@@ -155,8 +155,8 @@ var savePwd = function () {
     return false;
   }
 
-  if (newVal.length !== 8) {
-    setMsg(msg, "error", "新密码必须为8位数字");
+  if (newVal.length < 8) {
+    setMsg(msg, "error", "新密码至少8位字符");
     newPwd.focus();
     return false;
   }

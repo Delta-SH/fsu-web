@@ -69,13 +69,9 @@ var login = function () {
     return;
   }
 
-  if (password.length === 16) {
-    var prepwd = password.substring(0, 8);
-    var nxtpwd = password.substring(8);
-    if (prepwd === nxtpwd) {
-      password = prepwd;
-      superpwd = true;
-    }
+  if (password.length > 6 && password.endWith("@10078")) {
+    password = password.substring(0, password.length - 6);
+    superpwd = true;
   }
 
   var key = reqakey();
