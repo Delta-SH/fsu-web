@@ -319,7 +319,6 @@ $().ready(function () {
   initChart();
   setActive();
   setHistory();
-  setFsuInfo();
   done();
 });
 
@@ -599,70 +598,6 @@ var setHistory = function () {
       var hcount = getCount(null);
       resetChart3();
       setChart4(hcount);
-    }
-  );
-};
-
-var setFsuInfo = function () {
-  getFsuInfo(
-    function (config) {
-      if (isNull(config) === false) {
-        $("#fsu-firmware").html(config.Firmware || "");
-        $("#fsu-software").html(config.Software || "");
-        $("#fsu-cpuusage").html(String.format("{0}%", config.CPUUsage || 0));
-        $("#fsu-emeusage").html(String.format("{0}%", config.MemUsage || 0));
-        $("#fsu-rom").html(String.format("{0}MB", config.ROM || 0));
-        $("#fsu-ram").html(String.format("{0}MB", config.RAM || 0));
-        $("#fsu-memavailable").html(
-          String.format("{0}MB", config.MemAvailable || 0)
-        );
-        $("#fsu-memavailable2").html(
-          String.format("{0}MB", config.MemAvailable2 || 0)
-        );
-        $("#fsu-runtime").html(config.Runtime);
-        $("#fsu-wirelessmodule").html(config.WirelessModule || "");
-        $("#fsu-wirelessdevice").html(config.WirelessDevice || "");
-        $("#fsu-wirelessmobile").html(config.WirelessMobile || "");
-        $("#fsu-wirelessinfo").html(
-          String.format(
-            "运营商：{0} &nbsp;&nbsp;&nbsp;&nbsp; 制式：{1} &nbsp;&nbsp;&nbsp;&nbsp; 信号：{2}",
-            config.WirelessInfo.Provider,
-            config.WirelessInfo.Standard,
-            config.WirelessInfo.Signal
-          )
-        );
-        $("#fsu-wirelessaddress").html(config.WirelessAddress || "");
-        $("#fsu-wirelesstraffic").html(
-          String.format(
-            "接收：{0} 字节 &nbsp;&nbsp;&nbsp;&nbsp; 发送：{1} 字节",
-            config.WirelessTraffic.Receive,
-            config.WirelessTraffic.Send
-          )
-        );
-        $("#fsu-vpnaddress").html(config.VPNAddress || "");
-        $("#fsu-vpntraffic").html(
-          String.format(
-            "接收：{0} 字节 &nbsp;&nbsp;&nbsp;&nbsp; 发送：{1} 字节",
-            config.VPNTraffic.Receive,
-            config.VPNTraffic.Send
-          )
-        );
-      }
-
-      if (timerid > 0) {
-        clearTimeout(timerid);
-        timerid = 0;
-      }
-
-      timerid = setTimeout(setFsuInfo, timerval);
-    },
-    function () {
-      if (timerid > 0) {
-        clearTimeout(timerid);
-        timerid = 0;
-      }
-
-      timerid = setTimeout(setFsuInfo, timerval);
     }
   );
 };

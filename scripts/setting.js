@@ -2,7 +2,6 @@ $().ready(function () {
   setSize();
   setEvent();
   setNet();
-  setUpload();
   setScrval();
   done();
 });
@@ -19,9 +18,6 @@ var setEvent = function () {
     autoclose: true,
     minView: 2,
   });
-
-  $("#upgrade-commit").click(saveUpgrade);
-  $("#upgrade-apply").click(execUpgrade);
 };
 
 var setSize = function () {
@@ -108,28 +104,6 @@ var setMsg = function (element, type, message) {
   }
 
   element.html(icon + (message || ""));
-};
-
-var setUpload = function () {
-  $("#upgrade-form-file").on("change", function () {
-    var fileNames = [];
-    $.each(this.files, function () {
-      fileNames.push(this.name);
-    });
-
-    if (fileNames.length > 0) {
-      $("#upgrade-file-button").html(
-        '<i class="am-icon-file-archive-o"></i> ' + fileNames.join(";")
-      );
-    } else {
-      $("#upgrade-file-button").html(
-        '<i class="am-icon-cloud-upload"></i> 选择要上传的文件'
-      );
-    }
-
-    setProgress(0);
-    setMsg($("#upgrade-msg"));
-  });
 };
 
 var savePwd = function () {
@@ -398,116 +372,6 @@ var saveScrval = function () {
       );
     },
   });
-};
-
-var saveUpgrade = function () {
-  var msg = $("#upgrade-msg");
-  setProgress(0);
-  setMsg(msg);
-
-  var files = $("#upgrade-form-file")[0].files;
-  if (files && files.length > 0) {
-    var file = files[0];
-    var name = file.name
-      .substring(file.name.lastIndexOf(".") + 1)
-      .toLowerCase();
-
-    if (name == "gz" || name == "tar" || name == "zip") {
-      var formData = new FormData();
-      formData.append("upgrade", file);
-
-      setMsg(msg, "loading", "正在上传...");
-      $.ajax({
-        type: "post",
-        url: $requestURI + "upload?" + $systemAuth.token,
-        data: formData,
-        timeout: 300000,
-        async: true,
-        cache: false,
-        contentType: false,
-        processData: false,
-        xhr: function () {
-          var xhr = $.ajaxSettings.xhr();
-          if (xhr.upload) {
-            xhr.upload.addEventListener(
-              "progress",
-              function (e) {
-                var loaded = e.loaded;
-                var total = e.total;
-                setProgress(Math.floor((100 * loaded) / total));
-              },
-              false
-            );
-            return xhr;
-          }
-        },
-        success: function (data) {
-          if (isNullOrEmpty(data) === false) {
-            if (data.startWith("Error") === false) {
-              if (data === "true") {
-                setMsg(msg, "success", "文件上传成功");
-              } else {
-                setMsg(msg, "error", "文件上传失败");
-                setProgress(0);
-              }
-            } else {
-              setMsg(msg, "error", data);
-              setProgress(0);
-            }
-          }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          setMsg(
-            msg,
-            "error",
-            jqXHR.status + ":" + jqXHR.statusText + " " + jqXHR.responseText
-          );
-          setProgress(0);
-        },
-      });
-    } else {
-      setMsg(msg, "warning", "仅支持(.tar,.gz,.zip)格式文件");
-    }
-  } else {
-    setMsg(msg, "warning", "请选择需要上传的文件");
-  }
-};
-
-var execUpgrade = function () {
-  $("#exec-confirm").modal({
-    onConfirm: function (options) {
-      var msg = $("#upgrade-msg");
-      setMsg(msg, "loading", "正在下发指令...");
-      $.ajax({
-        url: $requestURI + "upgrade?" + $systemAuth.token,
-        success: function (data, status) {
-          if (isNullOrEmpty(data) === false) {
-            if (data.startWith("Error") === false) {
-              if (data === "true") {
-                setMsg(msg, "success", "指令下发成功");
-              } else {
-                setMsg(msg, "error", "指令下发失败");
-              }
-            } else {
-              setMsg(msg, "error", data);
-            }
-          }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          setMsg(
-            msg,
-            "error",
-            jqXHR.status + ":" + jqXHR.statusText + " " + jqXHR.responseText
-          );
-        },
-      });
-    },
-    onCancel: function () {},
-  });
-};
-
-var setProgress = function (per) {
-  $("#upgrade-form-progress > .progress-inner").css("width", per + "%");
 };
 
 var bindNet = function (data) {
