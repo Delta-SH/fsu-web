@@ -5,7 +5,13 @@ if (!$store.enabled) {
 }
 
 var $requestURI =
-  "http://" + $config.ip + ":" + $config.port + "/" + $config.path;
+  window.location.protocol +
+  "//" +
+  $config.ip +
+  ":" +
+  $config.port +
+  "/" +
+  $config.path;
 var $requestUid = $config.user;
 $.ajaxSetup({
   timeout: 30000,
