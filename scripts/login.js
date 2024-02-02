@@ -14,7 +14,21 @@ $().ready(function () {
   $("#login")
     .click(login)
     .blur(function (e) {
-      $(this).popover("close").popover("destroy");
+      $("#login").popover("close").popover("destroy");
+    });
+
+  $(window).on("keydown", function (event) {
+    $("#login").popover("close").popover("destroy");
+    if (event.which === 13) {
+      login();
+    }
+  });
+
+  $("#language")
+    .val(i18n.lang)
+    .on("change", function (event) {
+      var lan = $(this).val();
+      i18n({ lang: lan });
     });
 });
 
@@ -55,9 +69,10 @@ var reqout = function (token) {
 
 var login = function () {
   var password = $("#password").val();
+  var loginbtn = $("#login");
   var superpwd = false;
   if (isNullOrEmpty(password) === true) {
-    $(this)
+    loginbtn
       .popover("destroy")
       .popover({
         theme: "danger",
@@ -76,7 +91,7 @@ var login = function () {
 
   var key = reqakey();
   if (isNullOrEmpty(key) === true) {
-    $(this)
+    loginbtn
       .popover("destroy")
       .popover({
         theme: "danger",
@@ -89,7 +104,7 @@ var login = function () {
   }
 
   if (key.startWith("Error") === true) {
-    $(this)
+    loginbtn
       .popover("destroy")
       .popover({
         theme: "danger",
@@ -102,7 +117,7 @@ var login = function () {
 
   var atu = reqatu(key, $requestUid, password);
   if (atu === false) {
-    $(this)
+    loginbtn
       .button("reset")
       .popover("destroy")
       .popover({

@@ -1,83 +1,109 @@
-html,body{
-	height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 body {
-    font-size: 12px;
-    background-color: #282d2f;
+  font-size: 12px;
+  background-color: #282d2f;
 }
 
 .tpl-login {
-    width: 100%;
+  width: 100%;
 }
 
 .tpl-login .tpl-login-logo {
-    height: 200px;
-    margin: 0 auto;
-    margin-bottom: 25px;
-    background: url(../images/logo.png) center no-repeat;
+  height: 200px;
+  margin: 0 auto;
+  margin-bottom: 25px;
 }
 
 .tpl-login .tpl-login-content {
-    width: 300px;
-    margin: 8% auto 0;
+  width: 300px;
+  margin: 8% auto 0;
 }
 
 .tpl-login .tpl-login-btn {
-    padding: 10px 16px;
-    color: #b5b5b5;
-    background-color: rgba(0, 0, 0, 0);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 14px;
-    line-height: 14px;
+  padding: 10px 16px;
+  color: #b5b5b5;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  line-height: 14px;
 }
 
 .tpl-login .tpl-login-btn:hover,
 .tpl-login .tpl-login-btn:active {
-    border: 1px solid #b5b5b5;
-    background: #43454a;
-    color: #fff;
+  border: 1px solid #b5b5b5;
+  background: #43454a;
+  color: #fff;
 }
 
 .tpl-login .tpl-form-line-form {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
-.tpl-login .tpl-form-line-form input[type=text]:focus,
-.tpl-login .tpl-form-line-form input[type=password]:focus {
-    border-bottom: 1px solid #b5b5b5;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+.tpl-login .tpl-form-line-form input[type="text"]:focus,
+.tpl-login .tpl-form-line-form input[type="password"]:focus {
+  border-bottom: 1px solid #b5b5b5;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
-.tpl-login .tpl-form-line-form input[type=text],
-.tpl-login .tpl-form-line-form input[type=password] {
-    display: block;
-    width: 100%;
-    padding: 6px 3px;
-    line-height: 1.4;
-    font-size: 14px;
-    color: #fff;
-    background-color: #fff;
-    background-image: none;
-    background: 0 0;
-    border: 0;
-    border-radius: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    -webkit-transition: border-color ease-in-out 0.25s;
-    -o-transition: border-color ease-in-out 0.25s;
-    transition: border-color ease-in-out 0.25s;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -ms-border-radius: 0;
-    -o-border-radius: 0;
-    box-shadow: none;
+.tpl-login .tpl-form-line-form input[type="text"],
+.tpl-login .tpl-form-line-form input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 6px 3px;
+  line-height: 1.4;
+  font-size: 14px;
+  color: #fff;
+  background-color: #fff;
+  background-image: none;
+  background: 0 0;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  -webkit-transition: border-color ease-in-out 0.25s;
+  -o-transition: border-color ease-in-out 0.25s;
+  transition: border-color ease-in-out 0.25s;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  box-shadow: none;
 }
 
 .am-popover {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .py-icon {
-    margin-right: 5px;
+  margin-right: 5px;
+}
+
+#language {
+  display: block;
+  width: 100%;
+  padding: 6px 3px;
+  line-height: 1.4;
+  font-size: 14px;
+  color: #999;
+  background-color: #282d2f;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  -webkit-transition: border-color ease-in-out 0.25s;
+  -o-transition: border-color ease-in-out 0.25s;
+  transition: border-color ease-in-out 0.25s;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  box-shadow: none;
+
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: none;
 }

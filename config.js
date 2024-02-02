@@ -1,7 +1,7 @@
 window.$config = {
   name: "动力环境监控系统",
-  version: "v1.3.0 build240129",
-  ip: "127.0.0.1",
+  version: "v1.3.1 build240201",
+  ip: "192.168.10.101",
   port: 8099,
   path: "api/bi/",
   user: "ht",

@@ -1,0 +1,8 @@
+{
+  "login.submit": "登录",
+  "login.password.placeholder": "输入解锁密码",
+  "login.logo": "./images/logo.png",
+  "footer.title": "联系我们",
+  "this is button 1": "这是中文按钮",
+  "this is button 2": "这是英文按钮"
+}

@@ -1,7 +1,9 @@
+var snmpenabled = true;
 $().ready(function () {
   setSize();
   setEvent();
   setNet();
+  setSNMP();
   setUpload();
   setScrval();
   done();
@@ -9,6 +11,7 @@ $().ready(function () {
 
 var setEvent = function () {
   $(window).resize(setSize);
+
   $("#pwd-save").click(savePwd);
   $("#date-save").click(saveDate);
   $("#net-save").click(saveNet);
@@ -22,11 +25,31 @@ var setEvent = function () {
 
   $("#upgrade-commit").click(saveUpgrade);
   $("#upgrade-apply").click(execUpgrade);
+
+  if (snmpenabled) {
+    $("#snmp-save").click(saveSnmp);
+    $("#TrapInformType,#SnmpVer").on("change", function () {
+      var version = $("#SnmpVer").val();
+      var inform = $("#TrapInformType").val();
+      if (version == "1" && inform == "2") {
+        $("#InformParam").show();
+      } else {
+        $("#InformInterval").val(10);
+        $("#InformMaxNum").val(3);
+        $("#InformParam").hide();
+      }
+    });
+  }
 };
 
 var setSize = function () {
   var height = $(window).height();
   $(".py-fixed-tabs-bd").height(height - 140);
+
+  if (!snmpenabled) {
+    $("#snpmtab").remove();
+    $("#snpmtabpanel").remove();
+  }
 };
 
 var setNet = function () {
@@ -40,6 +63,34 @@ var setNet = function () {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           bindNet(data);
+          setMsg(msg, "success", "加载完成");
+        } else {
+          setMsg(msg, "error", data);
+        }
+      }
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      setMsg(
+        msg,
+        "error",
+        jqXHR.status + ":" + jqXHR.statusText + " " + jqXHR.responseText
+      );
+    },
+  });
+};
+
+var setSNMP = function () {
+  if ($systemAuth === null) return false;
+  if (!snmpenabled) return false;
+
+  var msg = $("#snmp-msg");
+  setMsg(msg, "loading", "正在加载...");
+  $.ajax({
+    url: $requestURI + "getnorthport?" + $systemAuth.token,
+    success: function (data, status) {
+      if (isNullOrEmpty(data) === false) {
+        if (data.startWith("Error") === false) {
+          bindSNMP(data);
           setMsg(msg, "success", "加载完成");
         } else {
           setMsg(msg, "error", data);
@@ -360,6 +411,154 @@ var saveNet = function () {
   });
 };
 
+var saveSnmp = function () {
+  if ($systemAuth === null) return false;
+
+  var numberPattern = /^[1-9]\d*$/;
+  var portPattern =
+    /^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/;
+
+  var SnmpEnabled = $("#SnmpEnabled"),
+    SnmpPort = $("#SnmpPort"),
+    SnmpVer = $("#SnmpVer"),
+    SnmpOid = $("#SnmpOid"),
+    SnmpReadCommunity = $("#SnmpReadCommunity"),
+    SnmpWriteCommunity = $("#SnmpWriteCommunity"),
+    TrapInformType = $("#TrapInformType"),
+    InformInterval = $("#InformInterval"),
+    InformMaxNum = $("#InformMaxNum"),
+    TrapIpPorts = $("#TrapIpPorts"),
+    ValidSnmpIps = $("#ValidSnmpIps"),
+    msg = $("#snmp-msg");
+
+  var SnmpEnabledVal = SnmpEnabled.val() == "1";
+  var SnmpVerVal = SnmpVer.val();
+  var TrapInformTypeVal = TrapInformType.val();
+  var TrapIpPortsVal = TrapIpPorts.val();
+  var ValidSnmpIpsVal = ValidSnmpIps.val();
+
+  var SnmpPortVal = SnmpPort.val();
+  if (isNullOrEmpty(SnmpPortVal) === true) {
+    setMsg(msg, "error", "本地端口不能为空");
+    SnmpPort.focus();
+    return false;
+  }
+
+  if (!portPattern.test(SnmpPortVal)) {
+    setMsg(msg, "error", "本地端口不合法");
+    SnmpPort.focus();
+    return false;
+  }
+
+  var SnmpOidVal = SnmpOid.val();
+  if (isNullOrEmpty(SnmpOidVal) === true) {
+    setMsg(msg, "error", "根节点OID不能为空");
+    SnmpOid.focus();
+    return false;
+  }
+
+  var SnmpReadCommunityVal = SnmpReadCommunity.val();
+  if (isNullOrEmpty(SnmpReadCommunityVal) === true) {
+    setMsg(msg, "error", "读公共体不能为空");
+    SnmpReadCommunity.focus();
+    return false;
+  }
+
+  var SnmpWriteCommunityVal = SnmpWriteCommunity.val();
+  if (isNullOrEmpty(SnmpWriteCommunityVal) === true) {
+    setMsg(msg, "error", "写公共体不能为空");
+    SnmpWriteCommunity.focus();
+    return false;
+  }
+
+  var InformIntervalVal = InformInterval.val();
+  if (isNullOrEmpty(InformIntervalVal) === true) {
+    setMsg(msg, "error", "Inform间隔不能为空");
+    InformInterval.focus();
+    return false;
+  }
+
+  if (!numberPattern.test(InformIntervalVal)) {
+    setMsg(msg, "error", "Inform间隔不合法");
+    InformInterval.focus();
+    return false;
+  }
+
+  var InformMaxNumVal = InformMaxNum.val();
+  if (isNullOrEmpty(InformMaxNumVal) === true) {
+    setMsg(msg, "error", "Inform最大次数");
+    InformMaxNum.focus();
+    return false;
+  }
+
+  if (!numberPattern.test(InformMaxNumVal)) {
+    setMsg(msg, "error", "Inform最大次数不合法");
+    InformMaxNum.focus();
+    return false;
+  }
+
+  var snmpcfg = {
+    Enabled: SnmpEnabledVal,
+    SvcPort: parseInt(SnmpPortVal),
+    ClientIP: "",
+    ClientPort: 0,
+    Hearbeat: 10,
+    LinkType: 0,
+    Protocol: 5,
+    ConnectDelay: 30,
+    RID: "0000000000",
+    Address: "",
+    SerialAddrSwt: false,
+    SendAckNum: 30,
+    TestPackNum: 20,
+    TimeOutNum: 10,
+    SnmpVer: parseInt(SnmpVerVal),
+    SnmpOid: SnmpOidVal,
+    SnmpReadCommunity: SnmpReadCommunityVal,
+    SnmpWriteCommunity: SnmpWriteCommunityVal,
+    TrapInformType: TrapInformTypeVal,
+    InformInterval: InformIntervalVal,
+    InformMaxNum: InformMaxNumVal,
+    ValidSnmpIps: ValidSnmpIpsVal,
+    TrapIpPorts: TrapIpPortsVal,
+    UsmUser: "",
+    SecurityLevel: 0,
+    AuthProtocol: 0,
+    AuthPassword: "",
+    PrivacyProtocol: 0,
+    PrivacyPassword: "",
+    SnmpSysLocation: "",
+    SnmpSysContact: "",
+    SnmpLocalEngineID: "",
+  };
+
+  setMsg(msg, "loading", "正在设置...");
+  $.ajax({
+    url: $requestURI + "setnorthport?" + $systemAuth.token,
+    data: JSON.stringify(snmpcfg),
+    success: function (data, status) {
+      if (isNullOrEmpty(data) === false) {
+        if (data.startWith("Error") === false) {
+          if (data === "true") {
+            setMsg(msg, "success", "SNMP设置成功");
+          } else {
+            setMsg(msg, "error", "SNMP设置失败");
+          }
+        } else {
+          setMsg(msg, "error", data);
+        }
+      }
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      setMsg(
+        msg,
+        "error",
+        jqXHR.status + ":" + jqXHR.statusText + " " + jqXHR.responseText
+      );
+    },
+  });
+};
+
 var saveScrval = function () {
   if ($systemAuth === null) return false;
 
@@ -555,4 +754,79 @@ var bindNet = function (data) {
   if (isNullOrEmpty(_data.DNS2) === false) {
     DNS2.val(_data.DNS2);
   }
+};
+
+var bindSNMP = function (data) {
+  var _data = JSON.parse(data);
+  var SnmpEnabled = $("#SnmpEnabled"),
+    SnmpPort = $("#SnmpPort"),
+    SnmpVer = $("#SnmpVer"),
+    SnmpOid = $("#SnmpOid"),
+    SnmpReadCommunity = $("#SnmpReadCommunity"),
+    SnmpWriteCommunity = $("#SnmpWriteCommunity"),
+    TrapInformType = $("#TrapInformType"),
+    InformInterval = $("#InformInterval"),
+    InformMaxNum = $("#InformMaxNum"),
+    TrapIpPorts = $("#TrapIpPorts"),
+    ValidSnmpIps = $("#ValidSnmpIps");
+
+  SnmpEnabled.val(0);
+  SnmpPort.val(0);
+  SnmpVer.val(0);
+  SnmpOid.val("");
+  SnmpReadCommunity.val("");
+  SnmpWriteCommunity.val("");
+  TrapInformType.val(0);
+  InformInterval.val(0);
+  InformMaxNum.val(0);
+  TrapIpPorts.val("");
+  ValidSnmpIps.val("");
+
+  if (isNullOrEmpty(_data.Enabled) === false) {
+    SnmpEnabled.val(_data.Enabled ? 1 : 0);
+  }
+
+  if (isNullOrEmpty(_data.SvcPort) === false) {
+    SnmpPort.val(_data.SvcPort);
+  }
+
+  if (isNullOrEmpty(_data.SnmpVer) === false) {
+    SnmpVer.val(_data.SnmpVer);
+  }
+
+  if (isNullOrEmpty(_data.SnmpOid) === false) {
+    SnmpOid.val(_data.SnmpOid);
+  }
+
+  if (isNullOrEmpty(_data.SnmpReadCommunity) === false) {
+    SnmpReadCommunity.val(_data.SnmpReadCommunity);
+  }
+
+  if (isNullOrEmpty(_data.SnmpWriteCommunity) === false) {
+    SnmpWriteCommunity.val(_data.SnmpWriteCommunity);
+  }
+
+  if (isNullOrEmpty(_data.TrapInformType) === false) {
+    TrapInformType.val(_data.TrapInformType);
+  }
+
+  if (isNullOrEmpty(_data.InformInterval) === false) {
+    InformInterval.val(_data.InformInterval);
+  }
+
+  if (isNullOrEmpty(_data.InformMaxNum) === false) {
+    InformMaxNum.val(_data.InformMaxNum);
+  }
+
+  if (isNullOrEmpty(_data.TrapIpPorts) === false) {
+    TrapIpPorts.val(_data.TrapIpPorts);
+  }
+
+  if (isNullOrEmpty(_data.ValidSnmpIps) === false) {
+    ValidSnmpIps.val(_data.ValidSnmpIps);
+  }
+
+  SnmpEnabled.trigger("changed.selected.amui");
+  SnmpVer.trigger("changed.selected.amui");
+  TrapInformType.trigger("changed.selected.amui");
 };
