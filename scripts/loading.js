@@ -5,6 +5,7 @@ var timerid = null;
 var timercnt = 0;
 var timeout = 120;
 $().ready(function () {
+  i18n.apply();
   auth = getSystemAuth();
   if (isNull(auth) === true) {
     logout();
@@ -19,7 +20,7 @@ $().ready(function () {
     }
 
     if (timercnt > timeout) {
-      showError("数据加载失败");
+      showError(i18n.get("loading.loadfailed"));
     }
   }, 1000);
 
@@ -57,7 +58,7 @@ var setDevice = function () {
       }
 
       if (data.startWith("Error") === true) {
-        showError(String.format("设备加载失败({0})", data));
+        showError(data);
         return;
       }
 
@@ -70,7 +71,7 @@ var setDevice = function () {
     error: function (jqXHR, textStatus, errorThrown) {
       showError(
         String.format(
-          "设备加载失败({0}:{1}:{2})",
+          "{0}:{1}:{2}",
           jqXHR.status,
           jqXHR.statusText,
           jqXHR.responseText
@@ -121,7 +122,7 @@ var setAlarm = function () {
       }
 
       if (data.startWith("Error") === true) {
-        showError(String.format("告警加载失败({0})", data));
+        showError(data);
         return;
       }
 
@@ -132,7 +133,7 @@ var setAlarm = function () {
     error: function (jqXHR, textStatus, errorThrown) {
       showError(
         String.format(
-          "告警加载失败({0}:{1}:{2})",
+          "{0}:{1}:{2}",
           jqXHR.status,
           jqXHR.statusText,
           jqXHR.responseText

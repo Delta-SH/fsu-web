@@ -30,7 +30,7 @@
       <div class="py-overview">
         <div class="py-overview-title hidden">
           <i class="am-icon-dashboard am-icon-fw"></i>
-          <span class="text">系统概览</span>
+          <span class="text" i18n="index.overview"></span>
         </div>
         <div class="py-overview-content">
           <ul class="am-avg-sm-5 py-category">
@@ -39,7 +39,7 @@
                 <div class="am-icon-th-large am-icon-fw py-category-icon"></div>
                 <div class="py-category-detail">
                   <p id="py-category-alarm" class="py-category-count">0</p>
-                  <h3 class="py-category-name">所有告警</h3>
+                  <h3 class="py-category-name" i18n="alarm.all"></h3>
                 </div>
               </div>
             </li>
@@ -48,7 +48,7 @@
                 <div class="am-icon-bolt am-icon-fw py-category-icon"></div>
                 <div class="py-category-detail">
                   <p id="py-category-alarm1" class="py-category-count">0</p>
-                  <h3 class="py-category-name">一级告警</h3>
+                  <h3 class="py-category-name" i18n="alarm.l1"></h3>
                 </div>
               </div>
             </li>
@@ -57,7 +57,7 @@
                 <div class="am-icon-bell am-icon-fw py-category-icon"></div>
                 <div class="py-category-detail">
                   <p id="py-category-alarm2" class="py-category-count">0</p>
-                  <h3 class="py-category-name">二级告警</h3>
+                  <h3 class="py-category-name" i18n="alarm.l2"></h3>
                 </div>
               </div>
             </li>
@@ -66,7 +66,7 @@
                 <div class="am-icon-warning am-icon-fw py-category-icon"></div>
                 <div class="py-category-detail">
                   <p id="py-category-alarm3" class="py-category-count">0</p>
-                  <h3 class="py-category-name">三级告警</h3>
+                  <h3 class="py-category-name" i18n="alarm.l3"></h3>
                 </div>
               </div>
             </li>
@@ -75,7 +75,7 @@
                 <div class="am-icon-bookmark am-icon-fw py-category-icon"></div>
                 <div class="py-category-detail">
                   <p id="py-category-alarm4" class="py-category-count">0</p>
-                  <h3 class="py-category-name">四级告警</h3>
+                  <h3 class="py-category-name" i18n="alarm.l4"></h3>
                 </div>
               </div>
             </li>
@@ -85,7 +85,7 @@
               <div class="py-chart py-chart-separation-r">
                 <div class="py-chart-title">
                   <i class="am-icon-bar-chart-o am-icon-fw"></i>
-                  <span class="text">活动告警分布</span>
+                  <span class="text" i18n="index.title1"></span>
                 </div>
                 <div id="py-categroy-chart1" class="py-chart-content"></div>
               </div>
@@ -94,7 +94,7 @@
               <div class="py-chart py-chart-separation-l">
                 <div class="py-chart-title">
                   <i class="am-icon-pie-chart am-icon-fw"></i>
-                  <span class="text">活动告警占比</span>
+                  <span class="text" i18n="index.title2"></span>
                 </div>
                 <div id="py-categroy-chart2" class="py-chart-content"></div>
               </div>
@@ -105,7 +105,7 @@
               <div class="py-chart py-chart-separation-r">
                 <div class="py-chart-title">
                   <i class="am-icon-area-chart am-icon-fw"></i>
-                  <span class="text">历史告警趋势(近30天)</span>
+                  <span class="text" i18n="index.title3"></span>
                 </div>
                 <div id="py-categroy-chart3" class="py-chart-content"></div>
               </div>
@@ -114,7 +114,7 @@
               <div class="py-chart py-chart-separation-l">
                 <div class="py-chart-title">
                   <i class="am-icon-pie-chart am-icon-fw"></i>
-                  <span class="text">历史告警占比(近30天)</span>
+                  <span class="text" i18n="index.title4"></span>
                 </div>
                 <div id="py-categroy-chart4" class="py-chart-content"></div>
               </div>
@@ -145,7 +145,7 @@
               <div class="py-chart">
                 <div class="py-chart-title">
                   <i class="am-icon-desktop am-icon-fw"></i>
-                  <span class="text">系统信息</span>
+                  <span class="text" i18n="index.title5"></span>
                 </div>
                 <div class="py-chart-content auto-height">
                   <table
@@ -158,87 +158,126 @@
                     <tbody>
                       <tr>
                         <td>
-                          <div class="title">硬件版本</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.hardware"
+                          ></div>
                           <div id="fsu-firmware" class="content"></div>
                         </td>
                         <td>
-                          <div class="title">软件版本</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.software"
+                          ></div>
                           <div id="fsu-software" class="content"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="title">ROM</div>
+                          <div class="title" i18n="index.systeminfo.rom"></div>
                           <div id="fsu-rom" class="content"></div>
                         </td>
                         <td>
-                          <div class="title">RAM</div>
+                          <div class="title" i18n="index.systeminfo.ram"></div>
                           <div id="fsu-ram" class="content"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="title">CPU使用率</div>
+                          <div class="title" i18n="index.systeminfo.cpu"></div>
                           <div id="fsu-cpuusage" class="content"></div>
                         </td>
                         <td>
-                          <div class="title">内存使用率</div>
+                          <div class="title" i18n="index.systeminfo.mem"></div>
                           <div id="fsu-emeusage" class="content"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="title">主存可用容量</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.mastermem"
+                          ></div>
                           <div id="fsu-memavailable" class="content"></div>
                         </td>
                         <td>
-                          <div class="title">辅存可用容量</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.secmem"
+                          ></div>
                           <div id="fsu-memavailable2" class="content"></div>
                         </td>
                       </tr>
                       <tr>
                         <td colspan="2">
-                          <div class="title">系统运行时长</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.runtime"
+                          ></div>
                           <div id="fsu-runtime" class="content"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="title">无线模块型号</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.wirelessmodule"
+                          ></div>
                           <div id="fsu-wirelessmodule" class="content"></div>
                         </td>
                         <td>
-                          <div class="title">无线设备编码</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.wirelessdevice"
+                          ></div>
                           <div id="fsu-wirelessdevice" class="content"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="title">无线手机卡号</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.wirelessmobile"
+                          ></div>
                           <div id="fsu-wirelessmobile" class="content"></div>
                         </td>
                         <td>
-                          <div class="title">无线制式信号</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.wirelesssignal"
+                          ></div>
                           <div id="fsu-wirelessinfo" class="content"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="title">无线地址</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.wirelessaddress"
+                          ></div>
                           <div id="fsu-wirelessaddress" class="content"></div>
                         </td>
                         <td>
-                          <div class="title">无线流量</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.wirelesstraffic"
+                          ></div>
                           <div id="fsu-wirelesstraffic" class="content"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="title">VPN地址</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.vpnaddress"
+                          ></div>
                           <div id="fsu-vpnaddress" class="content"></div>
                         </td>
                         <td>
-                          <div class="title">VPN流量</div>
+                          <div
+                            class="title"
+                            i18n="index.systeminfo.vpntraffic"
+                          ></div>
                           <div id="fsu-vpntraffic" class="content"></div>
                         </td>
                       </tr>
@@ -258,17 +297,22 @@
       tabindex="-1"
     >
       <div class="py-masking-info">
-        <i class="am-icon-spinner am-icon-spin"></i> 正在加载...
+        <i class="am-icon-spinner am-icon-spin"></i>
+        <span i18n="masking.loading"></span>
       </div>
     </div>
     <div id="py-alert" class="am-modal am-modal-alert" tabindex="-1">
       <div class="am-modal-dialog py-modal-dialog">
         <div class="am-modal-hd py-modal-hd">
-          <i class="am-icon-info-circle"></i> 系统消息
+          <i class="am-icon-info-circle"></i>
+          <span i18n="dialog.alert.info.title"></span>
         </div>
         <div class="am-modal-bd py-modal-bd"></div>
         <div class="am-modal-footer py-modal-footer">
-          <div class="am-modal-btn py-modal-btn">确定</div>
+          <div
+            class="am-modal-btn py-modal-btn"
+            i18n="dialog.alert.info.ok"
+          ></div>
         </div>
       </div>
     </div>
@@ -305,6 +349,7 @@
       src="scripts/framework/echarts.theme.shine.min.js?v=1.3.1"
       type="text/javascript"
     ></script>
+    <script src="i18n/i18n.js?v=1.3.1" type="text/javascript"></script>
     <script src="config.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/keypicker.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/utils.js?v=1.3.1" type="text/javascript"></script>

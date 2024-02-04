@@ -1,4 +1,5 @@
 $().ready(function () {
+  i18n.apply();
   var token = $cookie.get("pylon.auth.token");
   $store.remove("pylon.request.alarm");
   $store.remove("pylon.request.device");
@@ -77,7 +78,8 @@ var login = function () {
       .popover({
         theme: "danger",
         content:
-          '<i class="am-icon-times-circle py-icon"></i>解锁密码不能为空。',
+          '<i class="am-icon-times-circle py-icon"></i>' +
+          i18n.get("login.password.nontip"),
       })
       .popover("open");
 
@@ -96,7 +98,8 @@ var login = function () {
       .popover({
         theme: "danger",
         content:
-          '<i class="am-icon-times-circle py-icon"></i>获取令牌失败,请重试。',
+          '<i class="am-icon-times-circle py-icon"></i>' +
+          i18n.get("login.token.failed"),
       })
       .popover("open");
 
@@ -118,12 +121,12 @@ var login = function () {
   var atu = reqatu(key, $requestUid, password);
   if (atu === false) {
     loginbtn
-      .button("reset")
       .popover("destroy")
       .popover({
         theme: "danger",
         content:
-          '<i class="am-icon-times-circle py-icon"></i>密码错误,请重试。',
+          '<i class="am-icon-times-circle py-icon"></i>' +
+          i18n.get("login.password.failed"),
       })
       .popover("open");
 

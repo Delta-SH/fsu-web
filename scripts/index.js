@@ -162,9 +162,6 @@ var option3 = {
   },
   legend: {
     data: ["总计", "一级告警", "二级告警", "三级告警", "四级告警"],
-    selected: {
-      总计: false,
-    },
   },
   grid: {
     top: 25,
@@ -317,10 +314,65 @@ var option4 = {
 
 $().ready(function () {
   initChart();
-  setActive();
-  setHistory();
-  setFsuInfo();
-  done();
+  i18n.apply(function () {
+    option1.legend.data = [
+      i18n.get("alarm.l1"),
+      i18n.get("alarm.l2"),
+      i18n.get("alarm.l3"),
+      i18n.get("alarm.l4"),
+    ];
+    option1.series[0].name = i18n.get("alarm.l1");
+    option1.series[1].name = i18n.get("alarm.l2");
+    option1.series[2].name = i18n.get("alarm.l3");
+    option1.series[3].name = i18n.get("alarm.l4");
+
+    option2.legend.data = [
+      i18n.get("alarm.l1"),
+      i18n.get("alarm.l2"),
+      i18n.get("alarm.l3"),
+      i18n.get("alarm.l4"),
+    ];
+    option2.series[0].name = i18n.get("index.title2");
+    option2.series[0].data[0].name = i18n.get("alarm.l1");
+    option2.series[0].data[1].name = i18n.get("alarm.l2");
+    option2.series[0].data[2].name = i18n.get("alarm.l3");
+    option2.series[0].data[3].name = i18n.get("alarm.l4");
+
+    option3.legend.data = [
+      i18n.get("alarm.all"),
+      i18n.get("alarm.l1"),
+      i18n.get("alarm.l2"),
+      i18n.get("alarm.l3"),
+      i18n.get("alarm.l4"),
+    ];
+
+    option3.series[0].name = i18n.get("alarm.all");
+    option3.series[1].name = i18n.get("alarm.l1");
+    option3.series[2].name = i18n.get("alarm.l2");
+    option3.series[3].name = i18n.get("alarm.l3");
+    option3.series[4].name = i18n.get("alarm.l4");
+
+    option4.legend.data = [
+      i18n.get("alarm.l1"),
+      i18n.get("alarm.l2"),
+      i18n.get("alarm.l3"),
+      i18n.get("alarm.l4"),
+    ];
+    option4.series[0].name = i18n.get("index.title4");
+    option4.series[0].data[0].name = i18n.get("alarm.l1");
+    option4.series[0].data[1].name = i18n.get("alarm.l2");
+    option4.series[0].data[2].name = i18n.get("alarm.l3");
+    option4.series[0].data[3].name = i18n.get("alarm.l4");
+
+    if (chart1) chart1.setOption(option1);
+    if (chart2) chart2.setOption(option2);
+    if (chart3) chart3.setOption(option3);
+
+    setActive();
+    setHistory();
+    setFsuInfo();
+    done();
+  });
 });
 
 alarmCallback = function (data, ended) {
@@ -625,7 +677,7 @@ var setFsuInfo = function () {
         $("#fsu-wirelessmobile").html(config.WirelessMobile || "");
         $("#fsu-wirelessinfo").html(
           String.format(
-            "运营商：{0} &nbsp;&nbsp;&nbsp;&nbsp; 制式：{1} &nbsp;&nbsp;&nbsp;&nbsp; 信号：{2}",
+            i18n.get("index.systeminfo.signalpattern"),
             config.WirelessInfo.Provider,
             config.WirelessInfo.Standard,
             config.WirelessInfo.Signal
@@ -634,7 +686,7 @@ var setFsuInfo = function () {
         $("#fsu-wirelessaddress").html(config.WirelessAddress || "");
         $("#fsu-wirelesstraffic").html(
           String.format(
-            "接收：{0} 字节 &nbsp;&nbsp;&nbsp;&nbsp; 发送：{1} 字节",
+            i18n.get("index.systeminfo.trafficpattern"),
             config.WirelessTraffic.Receive,
             config.WirelessTraffic.Send
           )
@@ -642,7 +694,7 @@ var setFsuInfo = function () {
         $("#fsu-vpnaddress").html(config.VPNAddress || "");
         $("#fsu-vpntraffic").html(
           String.format(
-            "接收：{0} 字节 &nbsp;&nbsp;&nbsp;&nbsp; 发送：{1} 字节",
+            i18n.get("index.systeminfo.trafficpattern"),
             config.VPNTraffic.Receive,
             config.VPNTraffic.Send
           )
