@@ -2,10 +2,12 @@ var grid = null;
 var curtree = null;
 var curnode = null;
 $().ready(function () {
-  setGrid();
-  setTree();
-  setEvent();
-  done();
+  i18n.apply(function () {
+    setGrid();
+    setTree();
+    setEvent();
+    done();
+  });
 });
 
 alarmCallback = function (data, ended) {
@@ -15,7 +17,7 @@ alarmCallback = function (data, ended) {
 var setTree = function () {
   var root = {
     id: "root",
-    name: "全部",
+    name: i18n.get("tree.root"),
     open: true,
     icon: "images/all.png",
     type: -1,
@@ -71,41 +73,41 @@ var setGrid = function () {
     order: [[0, "desc"]],
     columns: [
       {
-        title: "序号",
+        title: i18n.get("alarm.table.column.SerialNO"),
         data: "SerialNO",
       },
       {
-        title: "级别",
+        title: i18n.get("alarm.table.column.AlarmLevel"),
         data: "AlarmLevel",
         className: "center",
       },
       {
-        title: "机房",
+        title: i18n.get("alarm.table.column.RoomName"),
         data: "RoomName",
       },
       {
-        title: "设备",
+        title: i18n.get("alarm.table.column.DeviceName"),
         data: "DeviceName",
       },
       {
-        title: "信号",
+        title: i18n.get("alarm.table.column.SignalName"),
         data: "SignalName",
       },
       {
-        title: "时间",
+        title: i18n.get("alarm.table.column.StartTime"),
         data: "StartTime",
         className: "center",
       },
       {
-        title: "触发值",
+        title: i18n.get("alarm.table.column.StartValue"),
         data: "StartValue",
       },
       {
-        title: "描述",
+        title: i18n.get("alarm.table.column.AlarmDesc"),
         data: "AlarmDesc",
       },
       {
-        title: "历时",
+        title: i18n.get("alarm.table.column.Interval"),
         data: "Interval",
         className: "center",
       },

@@ -4,10 +4,12 @@ var curnode = null;
 var timerid = null;
 var timerval = 10000;
 $().ready(function () {
-  setGrid();
-  setTree();
-  setEvent();
-  done();
+  i18n.apply(function () {
+    setGrid();
+    setTree();
+    setEvent();
+    done();
+  });
 });
 
 var setTree = function () {
@@ -74,7 +76,13 @@ var setEvent = function () {
 
     var ctrlparam = $("#py-ctrl-param");
     ctrlparam.html(
-      '<option value="0">常开控制-0</option><option value="1">常闭控制-1</option><option value="4">脉冲控制-4</option>'
+      '<option value="0">' +
+        i18n.get("dialog.ctrl.param.on") +
+        '-0</option><option value="1">' +
+        i18n.get("dialog.ctrl.param.off") +
+        '-1</option><option value="4">' +
+        i18n.get("dialog.ctrl.param.onff") +
+        "-4</option>"
     );
 
     var remark = me.attr("premark");
@@ -212,7 +220,7 @@ var setEvent = function () {
       value = param.val();
 
     if (isNullOrEmpty(value) === true || $.isNumeric(value) === false) {
-      setDialogMsg(dialog, "error", "非法的遥调数值");
+      setDialogMsg(dialog, "error", i18n.get("dialog.adjust.error"));
       param.focus();
       return false;
     }
@@ -243,7 +251,7 @@ var setEvent = function () {
       value = param.val();
 
     if (isNullOrEmpty(value) === true || $.isNumeric(value) === false) {
-      setDialogMsg(dialog, "error", "非法的告警阈值");
+      setDialogMsg(dialog, "error", i18n.get("dialog.threshold.error"));
       param.focus();
       return false;
     }
@@ -260,29 +268,29 @@ var setGrid = function () {
   grid = createGrid("#py-grid", {
     columns: [
       {
-        title: "状态",
+        title: i18n.get("point.table.column.state"),
         data: "State",
         className: "center",
       },
       {
-        title: "信号",
+        title: i18n.get("point.table.column.name"),
         data: "Name",
       },
       {
-        title: "类型",
+        title: i18n.get("point.table.column.type"),
         data: "Type",
         className: "center",
       },
       {
-        title: "测值",
+        title: i18n.get("point.table.column.value"),
         data: "Value",
       },
       {
-        title: "单位/描述",
+        title: i18n.get("point.table.column.remark"),
         data: "Remark",
       },
       {
-        title: "时间",
+        title: i18n.get("point.table.column.time"),
         data: "Time",
         className: "center",
       },
@@ -327,14 +335,18 @@ var setGrid = function () {
                 row.Name +
                 "' premark='" +
                 row.Remark +
-                "' class='am-btn am-btn-secondary am-btn-xs py-opt-ctrl'><i class='am-icon-wifi'></i> 遥控</button>";
+                "' class='am-btn am-btn-secondary am-btn-xs py-opt-ctrl'><i class='am-icon-wifi'></i> " +
+                i18n.get("point.table.button.ctl") +
+                "</button>";
             } else if (data == 3) {
               html +=
                 "<button pid='" +
                 row.ID +
                 "' pname='" +
                 row.Name +
-                "' class='am-btn am-btn-secondary am-btn-xs py-opt-adjust'><i class='am-icon-sliders'></i> 遥调</button>";
+                "' class='am-btn am-btn-secondary am-btn-xs py-opt-adjust'><i class='am-icon-sliders'></i> " +
+                i18n.get("point.table.button.adjust") +
+                "</button>";
             } else if (data == 0) {
               if (row.AlarmLevel > 0) {
                 html +=
@@ -344,7 +356,9 @@ var setGrid = function () {
                   row.Name +
                   "' plevel='" +
                   row.AlarmLevel +
-                  "' class='am-btn am-btn-danger am-btn-xs py-opt-level'><i class='am-icon-bell'></i> 告警</button>";
+                  "' class='am-btn am-btn-danger am-btn-xs py-opt-level'><i class='am-icon-bell'></i> " +
+                  i18n.get("point.table.button.alarm") +
+                  "</button>";
                 html +=
                   "<button pid='" +
                   row.ID +
@@ -352,7 +366,9 @@ var setGrid = function () {
                   row.Name +
                   "' pthreshold='" +
                   row.Threshold +
-                  "' class='am-btn am-btn-warning am-btn-xs py-opt-limit'><i class='am-icon-filter'></i> 阈值</button>";
+                  "' class='am-btn am-btn-warning am-btn-xs py-opt-limit'><i class='am-icon-filter'></i> " +
+                  i18n.get("point.table.button.threshold") +
+                  "</button>";
               }
             }
           }
@@ -395,7 +411,7 @@ var loadPoint = function () {
           grid._device = curnode.id;
           bindPoint(data);
         } else {
-          showAlert("系统错误", data, "danger");
+          showAlert(i18n.get("dialog.alert.error.title"), data, "danger");
         }
       }
     },
@@ -427,7 +443,7 @@ var loadValue = function (rows) {
         if (data.startWith("Error") === false) {
           bindValue(rows || grid._rows, data);
         } else {
-          showAlert("系统错误", data, "danger");
+          showAlert(i18n.get("dialog.alert.error.title"), data, "danger");
         }
       }
     },
@@ -501,7 +517,7 @@ var setPoint = function (target, point, value) {
 
   if (isNull(grid._device) === true) return false;
 
-  setDialogMsg(target, "loading", "正在设置,请稍后...");
+  setDialogMsg(target, "loading", i18n.get("point.setting.loading"));
   $.ajax({
     url:
       $requestURI +
@@ -517,10 +533,10 @@ var setPoint = function (target, point, value) {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           if (data === "true") {
-            setDialogMsg(target, "success", "设置成功");
+            setDialogMsg(target, "success", i18n.get("point.setting.success"));
             reloadPoint();
           } else {
-            setDialogMsg(target, "error", "设置失败");
+            setDialogMsg(target, "error", i18n.get("point.setting.failed"));
           }
         } else {
           setDialogMsg(target, "error", data);
@@ -544,7 +560,7 @@ var setLevel = function (target, point, value) {
 
   if (isNull(grid._device) === true) return false;
 
-  setDialogMsg(target, "loading", "正在设置,请稍后...");
+  setDialogMsg(target, "loading", i18n.get("point.setting.loading"));
   $.ajax({
     url:
       $requestURI +
@@ -560,10 +576,10 @@ var setLevel = function (target, point, value) {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           if (data === "true") {
-            setDialogMsg(target, "success", "设置成功");
+            setDialogMsg(target, "success", i18n.get("point.setting.success"));
             reloadPoint();
           } else {
-            setDialogMsg(target, "error", "设置失败");
+            setDialogMsg(target, "error", i18n.get("point.setting.failed"));
           }
         } else {
           setDialogMsg(target, "error", data);
@@ -587,7 +603,7 @@ var setThreshold = function (target, point, value) {
 
   if (isNull(grid._device) === true) return false;
 
-  setDialogMsg(target, "loading", "正在设置,请稍后...");
+  setDialogMsg(target, "loading", i18n.get("point.setting.loading"));
   $.ajax({
     url:
       $requestURI +
@@ -603,10 +619,10 @@ var setThreshold = function (target, point, value) {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           if (data === "true") {
-            setDialogMsg(target, "success", "设置成功");
+            setDialogMsg(target, "success", i18n.get("point.setting.success"));
             reloadPoint();
           } else {
-            setDialogMsg(target, "error", "设置失败");
+            setDialogMsg(target, "error", i18n.get("point.setting.failed"));
           }
         } else {
           setDialogMsg(target, "error", data);

@@ -35,13 +35,13 @@
               id="py-point-type"
               multiple
               data-am-selected
-              placeholder="信号类型"
+              i18n="placeholder$$point.name"
               style="display: none"
             >
-              <option value="0">遥信</option>
-              <option value="1">遥测</option>
-              <option value="2">遥控</option>
-              <option value="3">遥调</option>
+              <option value="0" i18n="point.di"></option>
+              <option value="1" i18n="point.ai"></option>
+              <option value="2" i18n="point.do"></option>
+              <option value="3" i18n="point.ao"></option>
             </select>
           </div>
           <div class="am-form-group py-form-group">
@@ -67,7 +67,7 @@
       <div class="am-modal-dialog py-modal-dialog">
         <div class="am-modal-hd py-modal-hd">
           <i class="am-icon-wifi"></i>
-          <span class="title">信号遥控</span>
+          <span class="title" i18n="dialog.ctrl.title"></span>
           <a
             href="javascript: void(0)"
             class="am-close am-close-spin"
@@ -80,17 +80,16 @@
             <form class="am-form">
               <fieldset>
                 <div class="am-form-group py-form-group">
-                  <label for="py-ctrl-name">信号名称:</label>
+                  <label for="py-ctrl-name" i18n="dialog.ctrl.name"></label>
                   <input
                     id="py-ctrl-name"
                     type="text"
                     class="am-form-field"
-                    placeholder="信号名称"
                     disabled
                   />
                 </div>
                 <div class="am-form-group py-form-group">
-                  <label for="py-ctrl-param">控制参数:</label>
+                  <label for="py-ctrl-param" i18n="dialog.ctrl.param"></label>
                   <select id="py-ctrl-param"></select>
                   <span class="am-form-caret"></span>
                 </div>
@@ -105,16 +104,14 @@
           <div class="py-form-button">
             <button
               id="py-ctrl-ok"
+              i18n="dialog.ok"
               class="am-btn am-btn-success am-radius am-btn-xs"
-            >
-              确定
-            </button>
+            ></button>
             <button
               id="py-ctrl-close"
+              i18n="dialog.close"
               class="am-btn am-btn-danger am-radius am-btn-xs"
-            >
-              关闭
-            </button>
+            ></button>
           </div>
         </div>
       </div>
@@ -123,7 +120,7 @@
       <div class="am-modal-dialog py-modal-dialog">
         <div class="am-modal-hd py-modal-hd">
           <i class="am-icon-sliders"></i>
-          <span class="title">信号遥调</span>
+          <span class="title" i18n="dialog.adjust.title"></span>
           <a
             href="javascript: void(0)"
             class="am-close am-close-spin"
@@ -136,22 +133,23 @@
             <form class="am-form">
               <fieldset>
                 <div class="am-form-group py-form-group">
-                  <label for="py-adjust-name">信号名称:</label>
+                  <label for="py-adjust-name" i18n="dialog.adjust.name"></label>
                   <input
                     id="py-adjust-name"
                     type="text"
                     class="am-form-field"
-                    placeholder="信号名称"
                     disabled
                   />
                 </div>
                 <div class="am-form-group py-form-group">
-                  <label for="py-adjust-param">遥调数值:</label>
+                  <label
+                    for="py-adjust-param"
+                    i18n="dialog.adjust.param"
+                  ></label>
                   <input
                     id="py-adjust-param"
                     type="text"
                     class="am-form-field py-keypicker"
-                    placeholder="遥调数值"
                   />
                 </div>
               </fieldset>
@@ -165,16 +163,14 @@
           <div class="py-form-button">
             <button
               id="py-adjust-ok"
+              i18n="dialog.ok"
               class="am-btn am-btn-success am-radius am-btn-xs"
-            >
-              确定
-            </button>
+            ></button>
             <button
               id="py-adjust-close"
+              i18n="dialog.close"
               class="am-btn am-btn-danger am-radius am-btn-xs"
-            >
-              关闭
-            </button>
+            ></button>
           </div>
         </div>
       </div>
@@ -183,7 +179,7 @@
       <div class="am-modal-dialog py-modal-dialog">
         <div class="am-modal-hd py-modal-hd">
           <i class="am-icon-bell"></i>
-          <span class="title">告警级别</span>
+          <span class="title" i18n="dialog.alarm.title"></span>
           <a
             href="javascript: void(0)"
             class="am-close am-close-spin"
@@ -196,22 +192,21 @@
             <form class="am-form">
               <fieldset>
                 <div class="am-form-group py-form-group">
-                  <label for="py-level-name">信号名称:</label>
+                  <label for="py-level-name" i18n="dialog.alarm.name"></label>
                   <input
                     id="py-level-name"
                     type="text"
                     class="am-form-field"
-                    placeholder="信号名称"
                     disabled
                   />
                 </div>
                 <div class="am-form-group py-form-group">
-                  <label for="py-level-param">告警级别:</label>
+                  <label for="py-level-param" i18n="dialog.alarm.param"></label>
                   <select id="py-level-param">
-                    <option value="1">一级告警</option>
-                    <option value="2">二级告警</option>
-                    <option value="3">三级告警</option>
-                    <option value="4">四级告警</option>
+                    <option value="1" i18n="alarm.l1"></option>
+                    <option value="2" i18n="alarm.l2"></option>
+                    <option value="3" i18n="alarm.l3"></option>
+                    <option value="4" i18n="alarm.l4"></option>
                   </select>
                   <span class="am-form-caret"></span>
                 </div>
@@ -226,16 +221,14 @@
           <div class="py-form-button">
             <button
               id="py-level-ok"
+              i18n="dialog.ok"
               class="am-btn am-btn-success am-radius am-btn-xs"
-            >
-              确定
-            </button>
+            ></button>
             <button
               id="py-level-close"
+              i18n="dialog.close"
               class="am-btn am-btn-danger am-radius am-btn-xs"
-            >
-              关闭
-            </button>
+            ></button>
           </div>
         </div>
       </div>
@@ -248,7 +241,7 @@
       <div class="am-modal-dialog py-modal-dialog">
         <div class="am-modal-hd py-modal-hd">
           <i class="am-icon-filter"></i>
-          <span class="title">告警阈值</span>
+          <span class="title" i18n="dialog.threshold.title"></span>
           <a
             href="javascript: void(0)"
             class="am-close am-close-spin"
@@ -261,22 +254,26 @@
             <form class="am-form">
               <fieldset>
                 <div class="am-form-group py-form-group">
-                  <label for="py-threshold-name">信号名称:</label>
+                  <label
+                    for="py-threshold-name"
+                    i18n="dialog.threshold.name"
+                  ></label>
                   <input
                     id="py-threshold-name"
                     type="text"
                     class="am-form-field"
-                    placeholder="信号名称"
                     disabled
                   />
                 </div>
                 <div class="am-form-group py-form-group">
-                  <label for="py-threshold-param">告警阈值:</label>
+                  <label
+                    for="py-threshold-param"
+                    i18n="dialog.threshold.param"
+                  ></label>
                   <input
                     id="py-threshold-param"
                     type="text"
                     class="am-form-field py-keypicker"
-                    placeholder="告警阈值"
                   />
                 </div>
               </fieldset>
@@ -290,16 +287,14 @@
           <div class="py-form-button">
             <button
               id="py-threshold-ok"
+              i18n="dialog.ok"
               class="am-btn am-btn-success am-radius am-btn-xs"
-            >
-              确定
-            </button>
+            ></button>
             <button
               id="py-threshold-close"
+              i18n="dialog.close"
               class="am-btn am-btn-danger am-radius am-btn-xs"
-            >
-              关闭
-            </button>
+            ></button>
           </div>
         </div>
       </div>
@@ -358,6 +353,7 @@
       src="ztree/js/jquery.ztree.all.min.js?v=1.3.1"
       type="text/javascript"
     ></script>
+    <script src="i18n/i18n.js?v=1.3.1" type="text/javascript"></script>
     <script src="config.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/keypicker.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/utils.js?v=1.3.1" type="text/javascript"></script>

@@ -65,9 +65,19 @@ var createGrid = function (element, options) {
       }
     },
     language: {
-      lengthMenu: "显示条数 _MENU_",
-      info: "显示 _START_-_END_ 条，共 _TOTAL_ 条",
-      infoEmpty: "没有数据",
+      processing: i18n.get("table.processing"),
+      loadingRecords: i18n.get("table.loadingRecords"),
+      lengthMenu: i18n.get("table.lengthMenu"),
+      info: i18n.get("table.info"),
+      infoEmpty: i18n.get("table.infoEmpty"),
+      emptyTable: i18n.get("table.emptyTable"),
+      zeroRecords: i18n.get("table.zeroRecords"),
+      infoFiltered: i18n.get("table.infoFiltered"),
+      search: i18n.get("table.search"),
+      aria: {
+        sortAscending: i18n.get("table.aria.sortAscending"),
+        sortDescending: i18n.get("table.aria.sortDescending"),
+      },
       paginate: {
         first: "<span class='am-icon-angle-double-left'></span>",
         previous: "<span class='am-icon-angle-left'></span>",

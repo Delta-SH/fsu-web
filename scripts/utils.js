@@ -64,30 +64,30 @@ var getTimespan = function (start, end) {
 
 var getAlarmName = function (value) {
   if (value === 1) {
-    return "一级告警";
+    return i18n.get("alarm.l1");
   } else if (value === 2) {
-    return "二级告警";
+    return i18n.get("alarm.l2");
   } else if (value === 3) {
-    return "三级告警";
+    return i18n.get("alarm.l3");
   } else if (value === 4) {
-    return "四级告警";
+    return i18n.get("alarm.l4");
   } else {
-    return "正常数据";
+    return i18n.get("alarm.l0");
   }
 };
 
 var getPointType = function (value) {
   value = value.toString();
   if (value === "0") {
-    return "遥信";
+    return i18n.get("point.di");
   } else if (value === "1") {
-    return "遥测";
+    return i18n.get("point.ai");
   } else if (value === "2") {
-    return "遥控";
+    return i18n.get("point.do");
   } else if (value === "3") {
-    return "遥调";
+    return i18n.get("point.ao");
   } else {
-    return "未定义";
+    return "NONE";
   }
 };
 
@@ -107,21 +107,21 @@ var getAlarmClass = function (value) {
 
 var getStateName = function (value) {
   if (value === 1) {
-    return "一级告警";
+    return i18n.get("state.l1");
   } else if (value === 2) {
-    return "二级告警";
+    return i18n.get("state.l2");
   } else if (value === 3) {
-    return "三级告警";
+    return i18n.get("state.l3");
   } else if (value === 4) {
-    return "四级告警";
+    return i18n.get("state.l4");
   } else if (value === 5) {
-    return "操作事件";
+    return i18n.get("state.l5");
   } else if (value === 6) {
-    return "无效数据";
+    return i18n.get("state.l6");
   } else if (value === 7) {
-    return "通信中断";
+    return i18n.get("state.l7");
   } else {
-    return "正常数据";
+    return i18n.get("state.l0");
   }
 };
 
