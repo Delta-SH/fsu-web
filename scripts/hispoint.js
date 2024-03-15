@@ -3,11 +3,13 @@ var curtree = null;
 var curnode = null;
 $().ready(function () {
   setSize();
-  setTree();
-  setGrid();
-  setDate();
-  setEvent();
-  done();
+  i18n.apply(function () {
+    setTree();
+    setGrid();
+    setDate();
+    setEvent();
+    done();
+  });
 });
 
 var setEvent = function () {
@@ -83,24 +85,24 @@ var setGrid = function () {
   grid = createGrid("#py-grid", {
     columns: [
       {
-        title: "信号",
+        title: i18n.get("point.table.column.name"),
         data: "Name",
       },
       {
-        title: "类型",
+        title: i18n.get("point.table.column.type"),
         data: "Type",
         className: "center",
       },
       {
-        title: "测值",
+        title: i18n.get("point.table.column.value"),
         data: "Value",
       },
       {
-        title: "单位/描述",
+        title: i18n.get("point.table.column.remark"),
         data: "Remark",
       },
       {
-        title: "时间",
+        title: i18n.get("point.table.column.time"),
         data: "Time",
         className: "center",
       },
@@ -171,7 +173,11 @@ var query = function () {
   if (grid == null) return false;
 
   if (curnode === null || curnode.type !== 2) {
-    showAlert("系统错误", "请选择查询的信号", "danger");
+    showAlert(
+      i18n.get("dialog.alert.error.title"),
+      i18n.get("warning.plsselectsignal"),
+      "danger"
+    );
     return;
   }
 
@@ -195,7 +201,7 @@ var query = function () {
         if (data.startWith("Error") === false) {
           setData(data);
         } else {
-          showAlert("系统错误", data, "danger");
+          showAlert(i18n.get("dialog.alert.error.title"), data, "danger");
         }
       }
     },
@@ -243,7 +249,7 @@ var loadPoints = function (node) {
           node.ajaxed = true;
           curtree.addNodes(node, _nodes);
         } else {
-          showAlert("系统错误", data, "danger");
+          showAlert(i18n.get("dialog.alert.error.title"), data, "danger");
         }
       }
     },

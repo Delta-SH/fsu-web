@@ -2,12 +2,14 @@ var grid = null;
 var curtree = null;
 var curnode = null;
 $().ready(function () {
-  initTree();
-  initSelect();
-  initGrid();
   setSize();
-  setEvent();
-  done();
+  i18n.apply(function () {
+    initTree();
+    initSelect();
+    initGrid();
+    setEvent();
+    done();
+  });
 });
 
 var setEvent = function () {
@@ -61,7 +63,7 @@ var setData = function (data) {
 var initTree = function () {
   var root = {
     id: "root",
-    name: "全部",
+    name: i18n.get("tree.root"),
     open: true,
     icon: "images/all.png",
     type: -1,
@@ -109,40 +111,40 @@ var initGrid = function () {
     order: [[0, "desc"]],
     columns: [
       {
-        title: "编号",
+        title: i18n.get("hisdevice.table.column.ID"),
         data: "ID",
       },
       {
-        title: "名称",
+        title: i18n.get("hisdevice.table.column.Name"),
         data: "Name",
       },
       {
-        title: "类型",
+        title: i18n.get("hisdevice.table.column.Type"),
         data: "Type",
       },
       {
-        title: "所属机房",
+        title: i18n.get("hisdevice.table.column.Room"),
         data: "Room",
       },
       {
-        title: "品牌",
+        title: i18n.get("hisdevice.table.column.Brand"),
         data: "Brand",
       },
       {
-        title: "型号",
+        title: i18n.get("hisdevice.table.column.Model"),
         data: "Model",
       },
       {
-        title: "版本",
+        title: i18n.get("hisdevice.table.column.Version"),
         data: "Version",
       },
       {
-        title: "上线时间",
+        title: i18n.get("hisdevice.table.column.BeginTime"),
         data: "BeginTime",
         className: "center",
       },
       {
-        title: "描述",
+        title: i18n.get("hisdevice.table.column.Desc"),
         data: "Desc",
       },
     ],

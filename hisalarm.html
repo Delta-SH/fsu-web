@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html class="no-js">
   <head>
+    <title i18n="system.title"></title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>动力环境监控系统</title>
-    <meta name="renderer" content="webkit" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <meta name="mobile-web-app-capable" content="yes" />
     <link rel="icon" sizes="32x32" href="favicon.ico" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="动力环境监控系统" />
-    <link rel="apple-touch-icon-precomposed" href="favicon.ico" />
     <link rel="stylesheet" href="css/framework/amazeui.min.css?v=1.3.1" />
     <link
       rel="stylesheet"
@@ -42,13 +33,13 @@
               id="py-alarm-level"
               multiple
               data-am-selected="{dropUp: 1}"
-              placeholder="告警等级"
+              i18n="placeholder$$alarm.name"
               style="display: none"
             >
-              <option value="1">一级告警</option>
-              <option value="2">二级告警</option>
-              <option value="3">三级告警</option>
-              <option value="4">四级告警</option>
+              <option value="1" i18n="alarm.l1"></option>
+              <option value="2" i18n="alarm.l2"></option>
+              <option value="3" i18n="alarm.l3"></option>
+              <option value="4" i18n="alarm.l4"></option>
             </select>
           </div>
           <div class="am-form-group py-form-group">
@@ -57,7 +48,7 @@
                 id="py-alarm-start"
                 type="text"
                 class="am-form-field"
-                placeholder="开始时间"
+                i18n="placeholder$$time.begin"
                 readonly
               />
               <span class="am-input-group-btn add-on">
@@ -73,7 +64,7 @@
                 id="py-alarm-end"
                 type="text"
                 class="am-form-field"
-                placeholder="结束时间"
+                i18n="placeholder$$time.end"
                 readonly
               />
               <span class="am-input-group-btn add-on">
@@ -87,9 +78,9 @@
             id="query"
             type="button"
             class="am-btn am-btn-success am-btn-block"
-            data-am-loading="{loadingText: '<i class=&quot;am-icon-spinner am-icon-spin&quot;></i>正在查询...'}"
+            data-am-loading="{loadingText: '<i class=&quot;am-icon-spinner am-icon-spin&quot;></i>loading...'}"
           >
-            <i class="am-icon-search"></i> 查询
+            <i class="am-icon-search"></i> <span i18n="query.button"></span>
           </button>
         </form>
       </div>
@@ -170,6 +161,7 @@
       type="text/javascript"
     ></script>
     <script src="config.js?v=1.3.1" type="text/javascript"></script>
+    <script src="i18n/i18n.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/keypicker.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/utils.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/app.js?v=1.3.1" type="text/javascript"></script>

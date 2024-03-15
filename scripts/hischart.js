@@ -1,90 +1,16 @@
 var curtree = null;
 var curnode = null;
 var curchart = null;
-var chartOption = {
-  title: {
-    text: "历史性能曲线图",
-    subtext: "",
-    x: "center",
-  },
-  tooltip: {
-    trigger: "axis",
-    axisPointer: {
-      type: "cross",
-    },
-    formatter: function (params) {
-      if (chartOption.series.length > 0) {
-        if (!$.isArray(params)) params = [params];
-
-        var tips = [];
-        $.each(params, function (index, item) {
-          tips.push(
-            String.format(
-              '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:{0}"></span>{1}<br/>信号测值：{2} {3}<br/>测值时间：{4}',
-              item.color,
-              item.seriesName,
-              item.value[1],
-              item.data.unit,
-              item.value[0]
-            )
-          );
-        });
-
-        return tips.join("<br/>");
-      }
-
-      return "无数据";
-    },
-  },
-  legend: {
-    type: "scroll",
-    left: "center",
-    top: "60",
-    data: [],
-  },
-  grid: {
-    top: 100,
-    left: 20,
-    right: 20,
-    bottom: 40,
-    containLabel: true,
-  },
-  dataZoom: [
-    {
-      type: "inside",
-      start: 0,
-      end: 100,
-    },
-    {
-      type: "slider",
-      show: true,
-      start: 0,
-      end: 100,
-    },
-  ],
-  xAxis: [
-    {
-      type: "time",
-      boundaryGap: false,
-      splitLine: {
-        show: false,
-      },
-    },
-  ],
-  yAxis: [
-    {
-      type: "value",
-    },
-  ],
-  series: [],
-};
+var chartOption = null;
 $().ready(function () {
   setSize();
-  setTree();
-  setDate();
-  setEvent();
-  initChart();
-  done();
+  i18n.apply(function () {
+    initChart();
+    setTree();
+    setDate();
+    setEvent();
+    done();
+  });
 });
 
 var setEvent = function () {
@@ -207,6 +133,87 @@ var setChart = function (data, signal) {
 
 var initChart = function () {
   curchart = echarts.init(document.getElementById("py-chart"), "shine");
+  chartOption = {
+    title: {
+      text: i18n.get("hischart.chart.title"),
+      subtext: "",
+      x: "center",
+    },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "cross",
+      },
+      formatter: function (params) {
+        if (chartOption.series.length > 0) {
+          if (!$.isArray(params)) params = [params];
+
+          var tips = [];
+          $.each(params, function (index, item) {
+            tips.push(
+              String.format(
+                '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:{0}"></span>{1}<br/>' +
+                  i18n.get("hischart.chart.value") +
+                  "{2} {3}<br/>" +
+                  i18n.get("hischart.chart.time") +
+                  "{4}",
+                item.color,
+                item.seriesName,
+                item.value[1],
+                item.data.unit,
+                item.value[0]
+              )
+            );
+          });
+
+          return tips.join("<br/>");
+        }
+
+        return "NO DATA";
+      },
+    },
+    legend: {
+      type: "scroll",
+      left: "center",
+      top: "60",
+      data: [],
+    },
+    grid: {
+      top: 100,
+      left: 20,
+      right: 20,
+      bottom: 40,
+      containLabel: true,
+    },
+    dataZoom: [
+      {
+        type: "inside",
+        start: 0,
+        end: 100,
+      },
+      {
+        type: "slider",
+        show: true,
+        start: 0,
+        end: 100,
+      },
+    ],
+    xAxis: [
+      {
+        type: "time",
+        boundaryGap: false,
+        splitLine: {
+          show: false,
+        },
+      },
+    ],
+    yAxis: [
+      {
+        type: "value",
+      },
+    ],
+    series: [],
+  };
   curchart.setOption(chartOption);
 };
 
@@ -216,7 +223,11 @@ var query = function () {
   if (curtree === null) return false;
 
   if (curnode === null || curnode.type !== 2) {
-    showAlert("系统错误", "请选择查询的信号", "danger");
+    showAlert(
+      i18n.get("dialog.alert.error.title"),
+      i18n.get("warning.plsselectsignal"),
+      "danger"
+    );
     return;
   }
 
@@ -232,7 +243,11 @@ var query = function () {
   me.button("loading");
   chartOption.legend.data = [];
   chartOption.series = [];
-  chartOption.title.text = String.format("{0} 历史性能曲线", curnode.pname);
+  chartOption.title.text = String.format(
+    "{0} {1}",
+    curnode.pname,
+    i18n.get("hischart.chart.title")
+  );
   chartOption.title.subtext = String.format("{0} - {1}", start, end);
   $.ajax({
     url: $requestURI + "gethistvalue?" + $systemAuth.token + "&" + param,
@@ -241,7 +256,7 @@ var query = function () {
         if (data.startWith("Error") === false) {
           setChart(data, curnode.pdata);
         } else {
-          showAlert("系统错误", data, "danger");
+          showAlert(i18n.get("dialog.alert.error.title"), data, "danger");
         }
       }
     },
@@ -292,7 +307,7 @@ var loadPoints = function (node) {
           node.ajaxed = true;
           curtree.addNodes(node, _nodes);
         } else {
-          showAlert("系统错误", data, "danger");
+          showAlert(i18n.get("dialog.alert.error.title"), data, "danger");
         }
       }
     },

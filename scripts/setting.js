@@ -1,12 +1,14 @@
 var snmpenabled = true;
 $().ready(function () {
   setSize();
-  setEvent();
-  setNet();
-  setSNMP();
-  setUpload();
-  setScrval();
-  done();
+  i18n.apply(function () {
+    setEvent();
+    setNet();
+    setSNMP();
+    setUpload();
+    setScrval();
+    done();
+  });
 });
 
 var setEvent = function () {
@@ -56,14 +58,14 @@ var setNet = function () {
   if ($systemAuth === null) return false;
 
   var msg = $("#net-msg");
-  setMsg(msg, "loading", "正在加载...");
+  setMsg(msg, "loading", i18n.get("setting.loading"));
   $.ajax({
     url: $requestURI + "getsnet?" + $systemAuth.token,
     success: function (data, status) {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           bindNet(data);
-          setMsg(msg, "success", "加载完成");
+          setMsg(msg, "success", i18n.get("setting.loaded"));
         } else {
           setMsg(msg, "error", data);
         }
@@ -84,14 +86,14 @@ var setSNMP = function () {
   if (!snmpenabled) return false;
 
   var msg = $("#snmp-msg");
-  setMsg(msg, "loading", "正在加载...");
+  setMsg(msg, "loading", "loading...");
   $.ajax({
     url: $requestURI + "getnorthport?" + $systemAuth.token,
     success: function (data, status) {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           bindSNMP(data);
-          setMsg(msg, "success", "加载完成");
+          setMsg(msg, "success", i18n.get("setting.loaded"));
         } else {
           setMsg(msg, "error", data);
         }
@@ -111,7 +113,7 @@ var setScrval = function () {
   if ($systemAuth === null) return false;
 
   var msg = $("#screen-msg");
-  setMsg(msg, "loading", "正在加载...");
+  setMsg(msg, "loading", i18n.get("setting.loading"));
   $.ajax({
     url:
       $requestURI +
@@ -132,7 +134,7 @@ var setScrval = function () {
 
       select.val(index);
       select.trigger("changed.selected.amui");
-      setMsg(msg, "success", "加载完成");
+      setMsg(msg, "success", i18n.get("setting.loaded"));
     },
     error: function (jqXHR, textStatus, errorThrown) {
       setMsg(
@@ -174,7 +176,8 @@ var setUpload = function () {
       );
     } else {
       $("#upgrade-file-button").html(
-        '<i class="am-icon-cloud-upload"></i> 选择要上传的文件'
+        '<i class="am-icon-cloud-upload"></i> ' +
+          i18n.get("setting.tabs.upgrade.label.Select")
       );
     }
 
@@ -195,36 +198,36 @@ var savePwd = function () {
     msg = $("#pwd-msg");
 
   if (isNullOrEmpty(oldVal) === true) {
-    setMsg(msg, "error", "原始密码不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.password.error.oldpwd"));
     oldPwd.focus();
     return false;
   }
 
   if (isNullOrEmpty(newVal) === true) {
-    setMsg(msg, "error", "新密码不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.password.error.newpwd"));
     newPwd.focus();
     return false;
   }
 
   if (newVal.length < 8) {
-    setMsg(msg, "error", "新密码至少8位字符");
+    setMsg(msg, "error", i18n.get("setting.tabs.password.error.pwdlen"));
     newPwd.focus();
     return false;
   }
 
   if (isNullOrEmpty(cfmVal) === true) {
-    setMsg(msg, "error", "确认密码不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.password.error.cfmpwd"));
     cfmPwd.focus();
     return false;
   }
 
   if (newVal !== cfmVal) {
-    setMsg(msg, "error", "确认密码不一致");
+    setMsg(msg, "error", i18n.get("setting.tabs.password.error.notcfm"));
     cfmPwd.focus();
     return false;
   }
 
-  setMsg(msg, "loading", "正在设置...");
+  setMsg(msg, "loading", i18n.get("setting.tabs.password.saving"));
   $.ajax({
     url:
       $requestURI +
@@ -238,9 +241,13 @@ var savePwd = function () {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           if (data === "true") {
-            setMsg(msg, "success", "密码修改成功");
+            setMsg(
+              msg,
+              "success",
+              i18n.get("setting.tabs.password.save.success")
+            );
           } else {
-            setMsg(msg, "error", "密码修改失败");
+            setMsg(msg, "error", i18n.get("setting.tabs.password.save.fail"));
           }
         } else {
           setMsg(msg, "error", data);
@@ -267,19 +274,19 @@ var saveDate = function () {
     msg = $("#date-msg");
 
   if (isNullOrEmpty(dateVal) === true) {
-    setMsg(msg, "error", "设置日期不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.datetime.error.date"));
     date.focus();
     return false;
   }
 
   if (isNullOrEmpty(timeVal) === true) {
-    setMsg(msg, "error", "设置时间不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.datetime.error.time"));
     time.focus();
     return false;
   }
 
   if (timeVal.length !== 6) {
-    setMsg(msg, "error", "时间格式错误(格式: HHmmss 示例: 085959)");
+    setMsg(msg, "error", i18n.get("setting.tabs.datetime.error.timeformat"));
     time.focus();
     return false;
   }
@@ -287,16 +294,31 @@ var saveDate = function () {
   var datetime = moment(dateVal + " " + timeVal, "YYYY-MM-DD HHmmss").format(
     "YYYY-MM-DD HH:mm:ss"
   );
-  setMsg(msg, "loading", "正在设置...");
+
+  setMsg(msg, "loading", i18n.get("setting.tabs.datetime.saving"));
   $.ajax({
     url: $requestURI + "settime?" + $systemAuth.token + "&" + datetime,
     success: function (data, status) {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           if (data === "true") {
-            setMsg(msg, "success", "时间(" + datetime + ")设置成功");
+            setMsg(
+              msg,
+              "success",
+              String.format(
+                i18n.get("setting.tabs.datetime.save.success"),
+                datetime
+              )
+            );
           } else {
-            setMsg(msg, "error", "时间(" + datetime + ")设置失败");
+            setMsg(
+              msg,
+              "error",
+              String.format(
+                i18n.get("setting.tabs.datetime.save.fail"),
+                datetime
+              )
+            );
           }
         } else {
           setMsg(msg, "error", data);
@@ -333,43 +355,51 @@ var saveNet = function () {
     msg = $("#net-msg");
 
   if (isNullOrEmpty(MainAddressIPVal) === true) {
-    setMsg(msg, "error", "主地址IP不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.network.error.MainAddressIP"));
     MainAddressIP.focus();
     return false;
   }
 
   if (isNullOrEmpty(MainAddressMaskVal) === true) {
-    setMsg(msg, "error", "主地址掩码不能为空");
+    setMsg(
+      msg,
+      "error",
+      i18n.get("setting.tabs.network.error.MainAddressMask")
+    );
     MainAddressMask.focus();
     return false;
   }
 
   if (isNullOrEmpty(MainAddressGatewayVal) === true) {
-    setMsg(msg, "error", "主地址默认网关不能为空");
+    setMsg(
+      msg,
+      "error",
+      i18n.get("setting.tabs.network.error.MainAddressGateway")
+    );
     MainAddressGateway.focus();
     return false;
   }
 
   // if(isNullOrEmpty(AuxAddressIPVal) === true){
-  //  setMsg(msg,'error','辅助地址IP不能为空');
+  //  setMsg(msg,'error',i18n.get("setting.tabs.network.error.AuxAddressIP"));
   //  AuxAddressIP.focus();
   //  return false;
   // }
 
   // if(isNullOrEmpty(AuxAddressMaskVal) === true){
-  //  setMsg(msg,'error','辅助地址掩码不能为空');
+  //  setMsg(msg,'error',i18n.get("setting.tabs.network.error.AuxAddressMask"));
   //  AuxAddressMask.focus();
   //  return false;
   // }
 
   // if (isNullOrEmpty(DNS1Val) === true) {
-  //     setMsg(msg, 'error', '主DNS不能为空');
+  //     setMsg(msg, 'error', i18n.get("setting.tabs.network.error.DNS1"));
   //     DNS1.focus();
   //     return false;
   // }
 
   // if(isNullOrEmpty(DNS2Val) === true){
-  //  setMsg(msg,'error','备用DNS不能为空');
+  //  setMsg(msg,'error',i18n.get("setting.tabs.network.error.DNS2"));
   //  DNS2.focus();
   //  return false;
   // }
@@ -384,7 +414,7 @@ var saveNet = function () {
     DNS2: DNS2Val,
   };
 
-  setMsg(msg, "loading", "正在设置...");
+  setMsg(msg, "loading", i18n.get("setting.tabs.network.saving"));
   $.ajax({
     url: $requestURI + "setsnet?" + $systemAuth.token,
     data: JSON.stringify(netcfg),
@@ -392,9 +422,13 @@ var saveNet = function () {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           if (data === "true") {
-            setMsg(msg, "success", "网卡设置成功");
+            setMsg(
+              msg,
+              "success",
+              i18n.get("setting.tabs.network.save.success")
+            );
           } else {
-            setMsg(msg, "error", "网卡设置失败");
+            setMsg(msg, "error", i18n.get("setting.tabs.network.save.fail"));
           }
         } else {
           setMsg(msg, "error", data);
@@ -439,60 +473,72 @@ var saveSnmp = function () {
 
   var SnmpPortVal = SnmpPort.val();
   if (isNullOrEmpty(SnmpPortVal) === true) {
-    setMsg(msg, "error", "本地端口不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.snmp.error.SnmpPort"));
     SnmpPort.focus();
     return false;
   }
 
   if (!portPattern.test(SnmpPortVal)) {
-    setMsg(msg, "error", "本地端口不合法");
+    setMsg(msg, "error", i18n.get("setting.tabs.snmp.error.SnmpPortInvalid"));
     SnmpPort.focus();
     return false;
   }
 
   var SnmpOidVal = SnmpOid.val();
   if (isNullOrEmpty(SnmpOidVal) === true) {
-    setMsg(msg, "error", "根节点OID不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.snmp.error.SnmpOid"));
     SnmpOid.focus();
     return false;
   }
 
   var SnmpReadCommunityVal = SnmpReadCommunity.val();
   if (isNullOrEmpty(SnmpReadCommunityVal) === true) {
-    setMsg(msg, "error", "读公共体不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.snmp.error.SnmpReadCommunity"));
     SnmpReadCommunity.focus();
     return false;
   }
 
   var SnmpWriteCommunityVal = SnmpWriteCommunity.val();
   if (isNullOrEmpty(SnmpWriteCommunityVal) === true) {
-    setMsg(msg, "error", "写公共体不能为空");
+    setMsg(
+      msg,
+      "error",
+      i18n.get("setting.tabs.snmp.error.SnmpWriteCommunity")
+    );
     SnmpWriteCommunity.focus();
     return false;
   }
 
   var InformIntervalVal = InformInterval.val();
   if (isNullOrEmpty(InformIntervalVal) === true) {
-    setMsg(msg, "error", "Inform间隔不能为空");
+    setMsg(msg, "error", i18n.get("setting.tabs.snmp.error.InformInterval"));
     InformInterval.focus();
     return false;
   }
 
   if (!numberPattern.test(InformIntervalVal)) {
-    setMsg(msg, "error", "Inform间隔不合法");
+    setMsg(
+      msg,
+      "error",
+      i18n.get("setting.tabs.snmp.error.InformIntervalInvalid")
+    );
     InformInterval.focus();
     return false;
   }
 
   var InformMaxNumVal = InformMaxNum.val();
   if (isNullOrEmpty(InformMaxNumVal) === true) {
-    setMsg(msg, "error", "Inform最大次数");
+    setMsg(msg, "error", i18n.get("setting.tabs.snmp.error.InformMaxNum"));
     InformMaxNum.focus();
     return false;
   }
 
   if (!numberPattern.test(InformMaxNumVal)) {
-    setMsg(msg, "error", "Inform最大次数不合法");
+    setMsg(
+      msg,
+      "error",
+      i18n.get("setting.tabs.snmp.error.InformMaxNumInvalid")
+    );
     InformMaxNum.focus();
     return false;
   }
@@ -532,7 +578,7 @@ var saveSnmp = function () {
     SnmpLocalEngineID: "",
   };
 
-  setMsg(msg, "loading", "正在设置...");
+  setMsg(msg, "loading", i18n.get("setting.tabs.snmp.saving"));
   $.ajax({
     url: $requestURI + "setnorthport?" + $systemAuth.token,
     data: JSON.stringify(snmpcfg),
@@ -540,9 +586,9 @@ var saveSnmp = function () {
       if (isNullOrEmpty(data) === false) {
         if (data.startWith("Error") === false) {
           if (data === "true") {
-            setMsg(msg, "success", "SNMP设置成功");
+            setMsg(msg, "success", i18n.get("setting.tabs.snmp.save.success"));
           } else {
-            setMsg(msg, "error", "SNMP设置失败");
+            setMsg(msg, "error", i18n.get("setting.tabs.snmp.save.fail"));
           }
         } else {
           setMsg(msg, "error", data);
@@ -566,7 +612,7 @@ var saveScrval = function () {
     intervalVal = parseInt(interval.val()) * 60000,
     msg = $("#screen-msg");
 
-  setMsg(msg, "loading", "正在设置...");
+  setMsg(msg, "loading", i18n.get("setting.tabs.screen.saving"));
   $.ajax({
     url:
       $requestURI +
@@ -580,9 +626,13 @@ var saveScrval = function () {
           if (data === "true") {
             $store.set("pylon.screen.time", intervalVal.toString());
             $screenTime = intervalVal;
-            setMsg(msg, "success", "屏保设置成功");
+            setMsg(
+              msg,
+              "success",
+              i18n.get("setting.tabs.screen.save.success")
+            );
           } else {
-            setMsg(msg, "error", "屏保设置失败");
+            setMsg(msg, "error", i18n.get("setting.tabs.screen.save.fail"));
           }
         } else {
           setMsg(msg, "error", data);
@@ -615,7 +665,7 @@ var saveUpgrade = function () {
       var formData = new FormData();
       formData.append("upgrade", file);
 
-      setMsg(msg, "loading", "正在上传...");
+      setMsg(msg, "loading", i18n.get("setting.tabs.upgrade.submiting"));
       $.ajax({
         type: "post",
         url: $requestURI + "upload?" + $systemAuth.token,
@@ -644,9 +694,17 @@ var saveUpgrade = function () {
           if (isNullOrEmpty(data) === false) {
             if (data.startWith("Error") === false) {
               if (data === "true") {
-                setMsg(msg, "success", "文件上传成功");
+                setMsg(
+                  msg,
+                  "success",
+                  i18n.get("setting.tabs.upgrade.submit.success")
+                );
               } else {
-                setMsg(msg, "error", "文件上传失败");
+                setMsg(
+                  msg,
+                  "error",
+                  i18n.get("setting.tabs.upgrade.submit.fail")
+                );
                 setProgress(0);
               }
             } else {
@@ -665,10 +723,10 @@ var saveUpgrade = function () {
         },
       });
     } else {
-      setMsg(msg, "warning", "仅支持(.tar,.gz,.zip)格式文件");
+      setMsg(msg, "warning", i18n.get("setting.tabs.upgrade.error.filetype"));
     }
   } else {
-    setMsg(msg, "warning", "请选择需要上传的文件");
+    setMsg(msg, "warning", i18n.get("setting.tabs.upgrade.error.select"));
   }
 };
 
@@ -676,16 +734,24 @@ var execUpgrade = function () {
   $("#exec-confirm").modal({
     onConfirm: function (options) {
       var msg = $("#upgrade-msg");
-      setMsg(msg, "loading", "正在下发指令...");
+      setMsg(msg, "loading", i18n.get("setting.tabs.upgrade.updating"));
       $.ajax({
         url: $requestURI + "upgrade?" + $systemAuth.token,
         success: function (data, status) {
           if (isNullOrEmpty(data) === false) {
             if (data.startWith("Error") === false) {
               if (data === "true") {
-                setMsg(msg, "success", "指令下发成功");
+                setMsg(
+                  msg,
+                  "success",
+                  i18n.get("setting.tabs.upgrade.update.success")
+                );
               } else {
-                setMsg(msg, "error", "指令下发失败");
+                setMsg(
+                  msg,
+                  "error",
+                  i18n.get("setting.tabs.upgrade.update.fail")
+                );
               }
             } else {
               setMsg(msg, "error", data);

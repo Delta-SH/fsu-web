@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html class="no-js">
   <head>
+    <title i18n="system.title"></title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>动力环境监控系统</title>
-    <meta name="renderer" content="webkit" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <meta name="mobile-web-app-capable" content="yes" />
     <link rel="icon" sizes="32x32" href="favicon.ico" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="动力环境监控系统" />
-    <link rel="apple-touch-icon-precomposed" href="favicon.ico" />
     <link rel="stylesheet" href="css/framework/amazeui.min.css?v=1.3.1" />
     <link
       rel="stylesheet"
@@ -29,17 +20,35 @@
     <div id="py-center">
       <div class="am-tabs py-tabs" data-am-tabs="{noSwipe: 1}">
         <ul class="am-tabs-nav py-nav-tabs am-nav am-nav-tabs">
-          <li class="am-active"><a href="javascript: void(0)">修改密码</a></li>
-          <li><a href="javascript: void(0)">时间设置</a></li>
-          <li><a href="javascript: void(0)">网卡设置</a></li>
-          <li id="snpmtab"><a href="javascript: void(0)">SNMP设置</a></li>
-          <li><a href="javascript: void(0)">屏保设置</a></li>
-          <li><a href="javascript: void(0)">软件升级</a></li>
+          <li class="am-active">
+            <a
+              href="javascript: void(0)"
+              i18n="setting.tabs.title.password"
+            ></a>
+          </li>
+          <li>
+            <a
+              href="javascript: void(0)"
+              i18n="setting.tabs.title.datetime"
+            ></a>
+          </li>
+          <li>
+            <a href="javascript: void(0)" i18n="setting.tabs.title.network"></a>
+          </li>
+          <li id="snpmtab">
+            <a href="javascript: void(0)" i18n="setting.tabs.title.snmp"></a>
+          </li>
+          <li>
+            <a href="javascript: void(0)" i18n="setting.tabs.title.screen"></a>
+          </li>
+          <li>
+            <a href="javascript: void(0)" i18n="setting.tabs.title.upgrade"></a>
+          </li>
         </ul>
         <div class="am-tabs-bd py-tabs-bd py-fixed-tabs-bd">
           <div class="am-tab-panel py-tab-panel am-active">
             <div class="py-setting">
-              <label>原始密码</label>
+              <label i18n="setting.tabs.password.oldpwd"></label>
               <input
                 id="oldPwd"
                 type="password"
@@ -47,7 +56,7 @@
               />
             </div>
             <div class="py-setting">
-              <label>新密码</label>
+              <label i18n="setting.tabs.password.newpwd"></label>
               <input
                 id="newPwd"
                 type="password"
@@ -55,7 +64,7 @@
               />
             </div>
             <div class="py-setting">
-              <label>确认密码</label>
+              <label i18n="setting.tabs.password.cfmpwd"></label>
               <input
                 id="cfmPwd"
                 type="password"
@@ -64,20 +73,21 @@
             </div>
             <div class="py-setting py-setting-toolbar">
               <button id="pwd-save" type="button" class="am-btn am-btn-success">
-                <i class="am-icon-check"></i> 保存
+                <i class="am-icon-check"></i>
+                <span i18n="setting.tabs.password.save"></span>
               </button>
               <div id="pwd-msg" class="py-setting-msg"></div>
             </div>
           </div>
           <div class="am-tab-panel py-tab-panel">
             <div class="py-setting">
-              <label>设置日期</label>
+              <label i18n="setting.tabs.datetime.label.date"></label>
               <div id="setting-date-datetimepicker" class="am-input-group date">
                 <input
                   id="py-setting-date"
                   type="text"
                   class="am-form-field"
-                  placeholder="格式示例: 2018-01-01"
+                  i18n="placeholder$$setting.tabs.datetime.placeholder.date"
                   readonly
                 />
                 <span class="am-input-group-btn add-on">
@@ -88,12 +98,12 @@
               </div>
             </div>
             <div class="py-setting">
-              <label>设置时间</label>
+              <label i18n="setting.tabs.datetime.label.time"></label>
               <input
                 id="py-setting-time"
                 type="text"
                 class="am-form-field py-keypicker"
-                placeholder="格式示例: 085959"
+                i18n="placeholder$$setting.tabs.datetime.placeholder.time"
               />
             </div>
             <div class="py-setting py-setting-toolbar">
@@ -102,7 +112,8 @@
                 type="button"
                 class="am-btn am-btn-success"
               >
-                <i class="am-icon-check"></i> 保存
+                <i class="am-icon-check"></i>
+                <span i18n="setting.tabs.datetime.save"></span>
               </button>
               <div id="date-msg" class="py-setting-msg"></div>
             </div>
@@ -111,7 +122,9 @@
             <div class="am-g">
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>主地址IP</label>
+                  <label
+                    i18n="setting.tabs.network.label.MainAddressIP"
+                  ></label>
                   <input
                     id="MainAddressIP"
                     type="text"
@@ -121,7 +134,9 @@
               </div>
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>主地址掩码</label>
+                  <label
+                    i18n="setting.tabs.network.label.MainAddressMask"
+                  ></label>
                   <input
                     id="MainAddressMask"
                     type="text"
@@ -134,7 +149,9 @@
             <div class="am-g">
               <div class="am-u-sm-8">
                 <div class="py-setting">
-                  <label>主地址默认网关</label>
+                  <label
+                    i18n="setting.tabs.network.label.MainAddressGateway"
+                  ></label>
                   <input
                     id="MainAddressGateway"
                     type="text"
@@ -147,7 +164,7 @@
             <div class="am-g">
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>辅助地址IP</label>
+                  <label i18n="setting.tabs.network.label.AuxAddressIP"></label>
                   <input
                     id="AuxAddressIP"
                     type="text"
@@ -157,7 +174,9 @@
               </div>
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>辅助地址掩码</label>
+                  <label
+                    i18n="setting.tabs.network.label.AuxAddressMask"
+                  ></label>
                   <input
                     id="AuxAddressMask"
                     type="text"
@@ -170,7 +189,7 @@
             <div class="am-g">
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>主DNS</label>
+                  <label i18n="setting.tabs.network.label.DNS1"></label>
                   <input
                     id="DNS1"
                     type="text"
@@ -180,7 +199,7 @@
               </div>
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>备用DNS</label>
+                  <label i18n="setting.tabs.network.label.DNS2"></label>
                   <input
                     id="DNS2"
                     type="text"
@@ -192,7 +211,8 @@
             </div>
             <div class="py-setting py-setting-toolbar">
               <button id="net-save" type="button" class="am-btn am-btn-success">
-                <i class="am-icon-check"></i> 保存
+                <i class="am-icon-check"></i>
+                <span i18n="setting.tabs.network.save"></span>
               </button>
               <div id="net-msg" class="py-setting-msg"></div>
             </div>
@@ -201,20 +221,26 @@
             <div class="am-g">
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>协议使能</label>
+                  <label i18n="setting.tabs.snmp.label.SnmpEnabled"></label>
                   <select
                     id="SnmpEnabled"
                     data-am-selected
                     class="am-form-field"
                   >
-                    <option value="0">禁用</option>
-                    <option value="1">启用</option>
+                    <option
+                      value="0"
+                      i18n="setting.tabs.snmp.SnmpEnabled.option0"
+                    ></option>
+                    <option
+                      value="1"
+                      i18n="setting.tabs.snmp.SnmpEnabled.option1"
+                    ></option>
                   </select>
                 </div>
               </div>
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>协议版本</label>
+                  <label i18n="setting.tabs.snmp.label.SnmpVer"></label>
                   <select id="SnmpVer" data-am-selected class="am-form-field">
                     <option value="0">v1</option>
                     <option value="1">v2c</option>
@@ -226,7 +252,7 @@
             <div class="am-g">
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>本地端口</label>
+                  <label i18n="setting.tabs.snmp.label.SnmpPort"></label>
                   <input
                     id="SnmpPort"
                     type="number"
@@ -239,7 +265,7 @@
               </div>
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>根节点OID</label>
+                  <label i18n="setting.tabs.snmp.label.SnmpOid"></label>
                   <input
                     id="SnmpOid"
                     type="text"
@@ -253,7 +279,9 @@
             <div class="am-g">
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>读公共体</label>
+                  <label
+                    i18n="setting.tabs.snmp.label.SnmpReadCommunity"
+                  ></label>
                   <input
                     id="SnmpReadCommunity"
                     type="text"
@@ -264,7 +292,9 @@
               </div>
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>写公共体</label>
+                  <label
+                    i18n="setting.tabs.snmp.label.SnmpWriteCommunity"
+                  ></label>
                   <input
                     id="SnmpWriteCommunity"
                     type="text"
@@ -278,13 +308,13 @@
             <div class="am-g">
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>Trap/Inform使能</label>
+                  <label i18n="setting.tabs.snmp.label.TrapInformType"></label>
                   <select
                     id="TrapInformType"
                     data-am-selected
                     class="am-form-field"
                   >
-                    <option value="0">无</option>
+                    <option value="0">None</option>
                     <option value="1">Trap</option>
                     <option value="2">Inform</option>
                   </select>
@@ -295,7 +325,7 @@
             <div class="am-g hidden" id="InformParam">
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>Inform间隔</label>
+                  <label i18n="setting.tabs.snmp.label.InformInterval"></label>
                   <input
                     id="InformInterval"
                     type="text"
@@ -305,7 +335,7 @@
               </div>
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>Inform最大次数</label>
+                  <label i18n="setting.tabs.snmp.label.InformMaxNum"></label>
                   <input
                     id="InformMaxNum"
                     type="text"
@@ -318,22 +348,22 @@
             <div class="am-g">
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>TrapIP集合</label>
+                  <label i18n="setting.tabs.snmp.label.TrapIpPorts"></label>
                   <input
                     id="TrapIpPorts"
                     type="text"
-                    placeholder="多个请用分号分隔(格式：IP1:Port1;IP2:Port2)"
+                    i18n="placeholder$$setting.tabs.snmp.TrapIpPorts.placeholder"
                     class="am-form-field py-keypicker"
                   />
                 </div>
               </div>
               <div class="am-u-sm-4">
                 <div class="py-setting">
-                  <label>受限IP访问集合</label>
+                  <label i18n="setting.tabs.snmp.label.ValidSnmpIps"></label>
                   <input
                     id="ValidSnmpIps"
                     type="text"
-                    placeholder="多个请用分号分隔(格式：IP1;IP2;IP3)"
+                    i18n="placeholder$$setting.tabs.snmp.ValidSnmpIps.placeholder"
                     class="am-form-field py-keypicker"
                   />
                 </div>
@@ -346,24 +376,40 @@
                 type="button"
                 class="am-btn am-btn-success"
               >
-                <i class="am-icon-check"></i> 保存
+                <i class="am-icon-check"></i>
+                <span i18n="setting.tabs.snmp.save"></span>
               </button>
               <div id="snmp-msg" class="py-setting-msg"></div>
             </div>
           </div>
           <div class="am-tab-panel py-tab-panel">
             <div class="py-setting">
-              <label>屏保时间</label>
+              <label i18n="setting.tabs.screen.label.Interval"></label>
               <select
                 id="screenInterval"
                 data-am-selected
                 class="am-form-field"
               >
-                <option value="5">5分钟</option>
-                <option value="10">10分钟</option>
-                <option value="15">15分钟</option>
-                <option value="30">30分钟</option>
-                <option value="60">60分钟</option>
+                <option
+                  value="5"
+                  i18n="setting.tabs.screen.Interval.item0"
+                ></option>
+                <option
+                  value="10"
+                  i18n="setting.tabs.screen.Interval.item1"
+                ></option>
+                <option
+                  value="15"
+                  i18n="setting.tabs.screen.Interval.item2"
+                ></option>
+                <option
+                  value="30"
+                  i18n="setting.tabs.screen.Interval.item3"
+                ></option>
+                <option
+                  value="60"
+                  i18n="setting.tabs.screen.Interval.item4"
+                ></option>
               </select>
             </div>
             <div class="py-setting py-setting-toolbar">
@@ -372,21 +418,23 @@
                 type="button"
                 class="am-btn am-btn-success"
               >
-                <i class="am-icon-check"></i> 保存
+                <i class="am-icon-check"></i>
+                <span i18n="setting.tabs.screen.save"></span>
               </button>
               <div id="screen-msg" class="py-setting-msg"></div>
             </div>
           </div>
           <div class="am-tab-panel py-tab-panel">
             <div class="py-setting form-group">
-              <label>软件升级文件</label>
+              <label i18n="setting.tabs.upgrade.label.File"></label>
               <div class="am-form-file">
                 <button
                   id="upgrade-file-button"
                   type="button"
                   class="am-btn am-btn-default am-btn-sm am-btn-block"
                 >
-                  <i class="am-icon-cloud-upload"></i> 选择要上传的文件
+                  <i class="am-icon-cloud-upload"></i>
+                  <span i18n="setting.tabs.upgrade.label.Select"></span>
                 </button>
                 <input
                   id="upgrade-form-file"
@@ -404,7 +452,8 @@
                 type="button"
                 class="am-btn am-btn-success"
               >
-                <i class="am-icon-upload"></i> 提交程序包
+                <i class="am-icon-upload"></i>
+                <span i18n="setting.tabs.upgrade.submit"></span>
               </button>
               <button
                 id="upgrade-apply"
@@ -412,7 +461,8 @@
                 class="am-btn am-btn-danger"
                 style="float: right"
               >
-                <i class="am-icon-refresh"></i> 更新程序包
+                <i class="am-icon-refresh"></i>
+                <span i18n="setting.tabs.upgrade.update"></span>
               </button>
               <div id="upgrade-msg" class="py-setting-msg"></div>
             </div>
@@ -449,11 +499,19 @@
 
     <div class="am-modal am-modal-confirm" tabindex="-1" id="exec-confirm">
       <div class="am-modal-dialog">
-        <div class="am-modal-hd">系统确认框</div>
-        <div class="am-modal-bd">你确定要执行该操作吗?</div>
+        <div class="am-modal-hd" i18n="dialog.confirm.title"></div>
+        <div class="am-modal-bd" i18n="dialog.confirm.content"></div>
         <div class="am-modal-footer">
-          <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-          <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+          <span
+            class="am-modal-btn"
+            data-am-modal-cancel
+            i18n="dialog.cancel"
+          ></span>
+          <span
+            class="am-modal-btn"
+            data-am-modal-confirm
+            i18n="dialog.ok"
+          ></span>
         </div>
       </div>
     </div>
@@ -488,6 +546,7 @@
       type="text/javascript"
     ></script>
     <script src="config.js?v=1.3.1" type="text/javascript"></script>
+    <script src="i18n/i18n.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/keypicker.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/utils.js?v=1.3.1" type="text/javascript"></script>
     <script src="scripts/app.js?v=1.3.1" type="text/javascript"></script>
