@@ -12,6 +12,7 @@ $().ready(function () {
     reqout(token);
   }
 
+  $("#uuid").val($config.user || "");
   $("#login")
     .click(login)
     .blur(function (e) {
@@ -69,9 +70,24 @@ var reqout = function (token) {
 };
 
 var login = function () {
+  var uuid = $("#uuid").val();
   var password = $("#password").val();
   var loginbtn = $("#login");
   var superpwd = false;
+  if (isNullOrEmpty(uuid) === true) {
+    loginbtn
+      .popover("destroy")
+      .popover({
+        theme: "danger",
+        content:
+          '<i class="am-icon-times-circle py-icon"></i>' +
+          i18n.get("login.uuid.nontip"),
+      })
+      .popover("open");
+
+    return;
+  }
+
   if (isNullOrEmpty(password) === true) {
     loginbtn
       .popover("destroy")
@@ -118,7 +134,7 @@ var login = function () {
     return;
   }
 
-  var atu = reqatu(key, $requestUid, password);
+  var atu = reqatu(key, uuid, password);
   if (atu === false) {
     loginbtn
       .popover("destroy")

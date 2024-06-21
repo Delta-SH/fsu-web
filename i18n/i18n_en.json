@@ -2,6 +2,8 @@
   "system.title": "Power Environment Monitoring System",
   "login.logo": "./images/logo_en.png",
   "login.submit": "LOGIN",
+  "login.uuid.placeholder": "please enter user name",
+  "login.uuid.nontip": "the user name is not allowed to be blank.",
   "login.password.placeholder": "please enter your password",
   "login.password.nontip": "the password is not allowed to be blank.",
   "login.password.failed": "incorrect password, please try again.",

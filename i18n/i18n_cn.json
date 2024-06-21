@@ -2,6 +2,8 @@
   "system.title": "动力环境监控系统",
   "login.logo": "./images/logo.png",
   "login.submit": "登录",
+  "login.uuid.placeholder": "输入用户名",
+  "login.uuid.nontip": "用户名不能为空。",
   "login.password.placeholder": "输入解锁密码",
   "login.password.nontip": "解锁密码不能为空。",
   "login.password.failed": "密码错误,请重试。",

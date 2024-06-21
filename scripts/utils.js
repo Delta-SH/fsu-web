@@ -7,12 +7,12 @@ if (!$store.enabled) {
 var $requestURI =
   window.location.protocol +
   "//" +
-  $config.ip +
+  window.location.hostname +
   ":" +
-  $config.port +
+  window.location.port +
   "/" +
   $config.path;
-var $requestUid = $config.user;
+
 $.ajaxSetup({
   timeout: 30000,
   type: "post",
